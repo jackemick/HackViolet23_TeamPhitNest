@@ -49,11 +49,12 @@ class _CompanySearchWidgetState extends State<CompanySearchWidget> {
                     'Enter Company To Get Started',
                     textAlign: TextAlign.center,
                     style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'NFS',
+                          fontFamily: 'Avenir',
                           color: Color(0xFFFBFBFB),
                           fontSize: 80,
                           fontWeight: FontWeight.w600,
                           fontStyle: FontStyle.italic,
+                          useGoogleFonts: false,
                         ),
                   ),
                 ),

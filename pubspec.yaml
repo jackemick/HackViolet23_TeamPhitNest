@@ -48,6 +48,7 @@ dependencies:
   plugin_platform_interface: 2.1.3
   provider: 6.0.4
   shared_preferences: 2.0.15
+  simple_gradient_text: 1.2.3
   sqflite: 2.2.0+2
   timeago: 3.2.2
   url_launcher: 6.1.5
@@ -93,6 +94,10 @@ flutter:
     - assets/lottie_animations/
     - assets/rive_animations/
     - assets/pdfs/
+  fonts:
+    - family: 'Avenir'
+      fonts:
+        - asset: assets/fonts/Avenir_Regular.ttf
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
