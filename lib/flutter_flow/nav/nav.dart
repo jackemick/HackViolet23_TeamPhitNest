@@ -39,7 +39,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'HomePage',
               path: 'homePage',
-              builder: (context, params) => HomePageWidget(),
+              builder: (context, params) => HomePageWidget(
+                companyName: params.getParam('companyName', ParamType.String),
+              ),
+            ),
+            FFRoute(
+              name: 'person_search',
+              path: 'personSearch',
+              builder: (context, params) => PersonSearchWidget(),
+            ),
+            FFRoute(
+              name: 'company_search',
+              path: 'companySearch',
+              builder: (context, params) => CompanySearchWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
