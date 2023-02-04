@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "707109677833",
+    "project_id": "hack-violet-2366a",
+    "storage_bucket": "hack-violet-2366a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:707109677833:android:1615aa38f472e99f4481d8",
+        "android_client_info": {
+          "package_name": "com.hackviolet.nofearspeak"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "707109677833-ibkoq6q3ih2p0ku0vkghf17um3v191bd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hackviolet.nofearspeak",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "707109677833-h5kk5c1o9r3q4ftlfoqs06lu07kplfls.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGGlgMyPQ8O70YNeNEvxWCnoBZJCC4jSk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "707109677833-h5kk5c1o9r3q4ftlfoqs06lu07kplfls.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "707109677833-st53sgiaaak1gm7cf7fh8cb8oh4hjulj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hackviolet.nofearspeak"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
