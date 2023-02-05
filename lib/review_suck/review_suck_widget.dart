@@ -65,6 +65,7 @@ class _ReviewSuckWidgetState extends State<ReviewSuckWidget> {
                                     color: Color(0xFFFBFBFB),
                                     fontSize: 64,
                                     fontStyle: FontStyle.italic,
+                                    useGoogleFonts: false,
                                   ),
                         ),
                       ),

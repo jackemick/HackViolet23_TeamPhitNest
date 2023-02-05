@@ -55,19 +55,54 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => CompanySearchWidget(),
             ),
             FFRoute(
-              name: 'new_emp_review1',
-              path: 'newEmpReview1',
-              builder: (context, params) => NewEmpReview1Widget(),
-            ),
-            FFRoute(
               name: 'new_emp_review2',
               path: 'newEmpReview2',
               builder: (context, params) => NewEmpReview2Widget(),
             ),
             FFRoute(
+              name: 'new_emp_review1',
+              path: 'newEmpReview1',
+              builder: (context, params) => NewEmpReview1Widget(),
+            ),
+            FFRoute(
               name: 'review_suck',
               path: 'reviewSuck',
               builder: (context, params) => ReviewSuckWidget(),
+            ),
+            FFRoute(
+              name: 'FindEmployees',
+              path: 'findEmployees',
+              builder: (context, params) => FindEmployeesWidget(),
+            ),
+            FFRoute(
+              name: 'NewCompanyReview',
+              path: 'newCompanyReview',
+              builder: (context, params) => NewCompanyReviewWidget(),
+            ),
+            FFRoute(
+              name: 'EmployeeReviews',
+              path: 'employeeReviews',
+              builder: (context, params) => EmployeeReviewsWidget(),
+            ),
+            FFRoute(
+              name: 'CompanyReview',
+              path: 'companyReview',
+              builder: (context, params) => CompanyReviewWidget(),
+            ),
+            FFRoute(
+              name: 'OpenEmployeeReview',
+              path: 'openEmployeeReview',
+              builder: (context, params) => OpenEmployeeReviewWidget(),
+            ),
+            FFRoute(
+              name: 'CompanyReviews',
+              path: 'companyReviews',
+              builder: (context, params) => CompanyReviewsWidget(),
+            ),
+            FFRoute(
+              name: 'new_company_review2',
+              path: 'newCompanyReview2',
+              builder: (context, params) => NewCompanyReview2Widget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

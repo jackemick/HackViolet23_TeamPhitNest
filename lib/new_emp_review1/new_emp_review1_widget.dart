@@ -1,5 +1,6 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -91,6 +92,7 @@ class _NewEmpReview1WidgetState extends State<NewEmpReview1Widget> {
                             color: FlutterFlowTheme.of(context).primaryBtnText,
                             fontSize: 80,
                             fontStyle: FontStyle.italic,
+                            useGoogleFonts: false,
                             lineHeight: 0.842,
                           ),
                     ),
@@ -140,6 +142,7 @@ class _NewEmpReview1WidgetState extends State<NewEmpReview1Widget> {
                                           color: Color(0xFF58197E),
                                           fontSize: 15,
                                           fontWeight: FontWeight.w800,
+                                          useGoogleFonts: false,
                                         ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
@@ -189,6 +192,7 @@ class _NewEmpReview1WidgetState extends State<NewEmpReview1Widget> {
                                         color: Color(0xFF58197E),
                                         fontSize: 15,
                                         fontWeight: FontWeight.w800,
+                                        useGoogleFonts: false,
                                       ),
                                 ),
                               ),
@@ -225,6 +229,7 @@ class _NewEmpReview1WidgetState extends State<NewEmpReview1Widget> {
                                           color: Color(0xFF58197E),
                                           fontSize: 15,
                                           fontWeight: FontWeight.w800,
+                                          useGoogleFonts: false,
                                         ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
@@ -274,6 +279,7 @@ class _NewEmpReview1WidgetState extends State<NewEmpReview1Widget> {
                                         color: Color(0xFF58197E),
                                         fontSize: 15,
                                         fontWeight: FontWeight.w800,
+                                        useGoogleFonts: false,
                                       ),
                                 ),
                               ),
@@ -309,6 +315,7 @@ class _NewEmpReview1WidgetState extends State<NewEmpReview1Widget> {
                                           color: Color(0xFF58197E),
                                           fontSize: 15,
                                           fontWeight: FontWeight.w800,
+                                          useGoogleFonts: false,
                                         ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
@@ -358,6 +365,7 @@ class _NewEmpReview1WidgetState extends State<NewEmpReview1Widget> {
                                         color: Color(0xFF58197E),
                                         fontSize: 15,
                                         fontWeight: FontWeight.w800,
+                                        useGoogleFonts: false,
                                       ),
                                 ),
                               ),
@@ -401,6 +409,7 @@ class _NewEmpReview1WidgetState extends State<NewEmpReview1Widget> {
                                           color: Color(0xFF58197E),
                                           fontSize: 15,
                                           fontWeight: FontWeight.w800,
+                                          useGoogleFonts: false,
                                         ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
@@ -450,6 +459,7 @@ class _NewEmpReview1WidgetState extends State<NewEmpReview1Widget> {
                                         color: Color(0xFF58197E),
                                         fontSize: 15,
                                         fontWeight: FontWeight.w800,
+                                        useGoogleFonts: false,
                                       ),
                                 ),
                               ),
@@ -493,6 +503,7 @@ class _NewEmpReview1WidgetState extends State<NewEmpReview1Widget> {
                                           color: Color(0xFF58197E),
                                           fontSize: 15,
                                           fontWeight: FontWeight.w800,
+                                          useGoogleFonts: false,
                                         ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
@@ -542,6 +553,7 @@ class _NewEmpReview1WidgetState extends State<NewEmpReview1Widget> {
                                         color: Color(0xFF58197E),
                                         fontSize: 15,
                                         fontWeight: FontWeight.w800,
+                                        useGoogleFonts: false,
                                       ),
                                 ),
                               ),
@@ -585,6 +597,7 @@ class _NewEmpReview1WidgetState extends State<NewEmpReview1Widget> {
                                           color: Color(0xFF58197E),
                                           fontSize: 15,
                                           fontWeight: FontWeight.w800,
+                                          useGoogleFonts: false,
                                         ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
@@ -634,6 +647,7 @@ class _NewEmpReview1WidgetState extends State<NewEmpReview1Widget> {
                                         color: Color(0xFF58197E),
                                         fontSize: 15,
                                         fontWeight: FontWeight.w800,
+                                        useGoogleFonts: false,
                                       ),
                                 ),
                               ),
@@ -677,6 +691,7 @@ class _NewEmpReview1WidgetState extends State<NewEmpReview1Widget> {
                                           color: Color(0xFF58197E),
                                           fontSize: 15,
                                           fontWeight: FontWeight.w800,
+                                          useGoogleFonts: false,
                                         ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
@@ -726,6 +741,7 @@ class _NewEmpReview1WidgetState extends State<NewEmpReview1Widget> {
                                         color: Color(0xFF58197E),
                                         fontSize: 15,
                                         fontWeight: FontWeight.w800,
+                                        useGoogleFonts: false,
                                       ),
                                 ),
                               ),
@@ -742,19 +758,49 @@ class _NewEmpReview1WidgetState extends State<NewEmpReview1Widget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(49, 60, 0, 0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Container(
-                              width: 295,
-                              height: 53,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
+                        padding: EdgeInsetsDirectional.fromSTEB(50, 76, 50, 8),
+                        child: Container(
+                          width: 232,
+                          height: 58,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Color(0xFFE9CCFF),
+                                FlutterFlowTheme.of(context).primaryBtnText
+                              ],
+                              stops: [0, 1],
+                              begin: AlignmentDirectional(0, 1),
+                              end: AlignmentDirectional(0, -1),
+                            ),
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                            child: FFButtonWidget(
+                              onPressed: () {
+                                print('Button pressed ...');
+                              },
+                              text: 'Continue',
+                              options: FFButtonOptions(
+                                width: 224,
+                                height: 50,
+                                color: Color(0xFFEFDDFC),
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Avenir Reg',
+                                      color: Color(0xFF58197E),
+                                      fontSize: 15,
+                                      useGoogleFonts: false,
+                                    ),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(18),
                               ),
                             ),
-                          ],
+                          ),
                         ),
                       ),
                     ],
