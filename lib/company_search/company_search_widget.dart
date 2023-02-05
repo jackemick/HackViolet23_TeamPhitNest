@@ -153,9 +153,32 @@ class _CompanySearchWidgetState extends State<CompanySearchWidget> {
                                             companies[companiesIndex];
                                         return Container(
                                           decoration: BoxDecoration(),
-                                          child: CompanySearchCardWidget(
-                                            company: companiesItem,
-                                            onSelect: () async {},
+                                          child: InkWell(
+                                            onTap: () async {
+                                              context.pushNamed(
+                                                'CompanyReview',
+                                                queryParams: {
+                                                  'company': serializeParam(
+                                                    companiesItem,
+                                                    ParamType.Document,
+                                                  ),
+                                                }.withoutNulls,
+                                                extra: <String, dynamic>{
+                                                  'company': companiesItem,
+                                                  kTransitionInfoKey:
+                                                      TransitionInfo(
+                                                    hasTransition: true,
+                                                    transitionType:
+                                                        PageTransitionType
+                                                            .topToBottom,
+                                                  ),
+                                                },
+                                              );
+                                            },
+                                            child: CompanySearchCardWidget(
+                                              company: companiesItem,
+                                              onSelect: () async {},
+                                            ),
                                           ),
                                         );
                                       },
@@ -164,14 +187,24 @@ class _CompanySearchWidgetState extends State<CompanySearchWidget> {
                                 ),
                               ),
                               Divider(
-                                thickness: 1,
+                                thickness: 2,
+                                color: Color(0xFF58197E),
                               ),
                               Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
                                 child: FFButtonWidget(
-                                  onPressed: () {
-                                    print('Button pressed ...');
+                                  onPressed: () async {
+                                    context.pushNamed(
+                                      'NewCompanyReview',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.topToBottom,
+                                        ),
+                                      },
+                                    );
                                   },
                                   text: 'Add a New Company',
                                   options: FFButtonOptions(

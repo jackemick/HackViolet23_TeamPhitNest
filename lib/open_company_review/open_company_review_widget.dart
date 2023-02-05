@@ -6,15 +6,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
-class OpenEmployeeReviewWidget extends StatefulWidget {
-  const OpenEmployeeReviewWidget({Key? key}) : super(key: key);
+class OpenCompanyReviewWidget extends StatefulWidget {
+  const OpenCompanyReviewWidget({Key? key}) : super(key: key);
 
   @override
-  _OpenEmployeeReviewWidgetState createState() =>
-      _OpenEmployeeReviewWidgetState();
+  _OpenCompanyReviewWidgetState createState() =>
+      _OpenCompanyReviewWidgetState();
 }
 
-class _OpenEmployeeReviewWidgetState extends State<OpenEmployeeReviewWidget> {
+class _OpenCompanyReviewWidgetState extends State<OpenCompanyReviewWidget> {
   TextEditingController? textController;
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -73,16 +73,12 @@ class _OpenEmployeeReviewWidgetState extends State<OpenEmployeeReviewWidget> {
                         decoration: BoxDecoration(
                           color: Color(0x00FFFFFF),
                         ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Align(
-                              alignment: AlignmentDirectional(0, 0),
-                              child: GradientText(
-                                'Employee\nName',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
+                        child: Align(
+                          alignment: AlignmentDirectional(0, 0),
+                          child: GradientText(
+                            'Company\nName',
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
                                       fontFamily: 'Avenir Reg',
                                       fontSize: 40,
                                       fontWeight: FontWeight.w500,
@@ -90,33 +86,13 @@ class _OpenEmployeeReviewWidgetState extends State<OpenEmployeeReviewWidget> {
                                       useGoogleFonts: false,
                                       lineHeight: 0.842,
                                     ),
-                                colors: [
-                                  Color(0xFFEFDDFC),
-                                  FlutterFlowTheme.of(context).primaryBtnText
-                                ],
-                                gradientDirection: GradientDirection.ltr,
-                                gradientType: GradientType.linear,
-                              ),
-                            ),
-                            Align(
-                              alignment: AlignmentDirectional(0, 0),
-                              child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                child: Text(
-                                  '[Department]',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Avenir Reg',
-                                        color: Color(0xFF58197E),
-                                        fontSize: 14,
-                                        useGoogleFonts: false,
-                                      ),
-                                ),
-                              ),
-                            ),
-                          ],
+                            colors: [
+                              Color(0xFFEFDDFC),
+                              FlutterFlowTheme.of(context).primaryBtnText
+                            ],
+                            gradientDirection: GradientDirection.ltr,
+                            gradientType: GradientType.linear,
+                          ),
                         ),
                       ),
                     ),
@@ -132,57 +108,6 @@ class _OpenEmployeeReviewWidgetState extends State<OpenEmployeeReviewWidget> {
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Align(
-                              alignment: AlignmentDirectional(-0.95, 0),
-                              child: Container(
-                                width: 320,
-                                height: 70,
-                                decoration: BoxDecoration(
-                                  color: Color(0x00FFFFFF),
-                                ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Align(
-                                      alignment: AlignmentDirectional(-1, 0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            12, 20, 0, 0),
-                                        child: Text(
-                                          'Position: ',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Avenir Reg',
-                                                color: Color(0xFF58197E),
-                                                fontSize: 14,
-                                                useGoogleFonts: false,
-                                              ),
-                                        ),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: AlignmentDirectional(-1, 0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            12, 10, 0, 0),
-                                        child: Text(
-                                          'Date of Occurance:',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Avenir Reg',
-                                                color: Color(0xFF58197E),
-                                                fontSize: 14,
-                                                useGoogleFonts: false,
-                                              ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
@@ -457,7 +382,7 @@ class _OpenEmployeeReviewWidgetState extends State<OpenEmployeeReviewWidget> {
                                   EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                               child: Container(
                                 width: 282,
-                                height: 200,
+                                height: 270,
                                 decoration: BoxDecoration(
                                   color: Color(0xFFE9CCFF),
                                   borderRadius: BorderRadius.circular(18),

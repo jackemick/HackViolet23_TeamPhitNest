@@ -221,7 +221,7 @@ class _NewEmpReview1WidgetState extends State<NewEmpReview1Widget> {
                                   autofocus: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    hintText: 'LinkedIn',
+                                    hintText: 'Department',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .bodyText2
                                         .override(

@@ -29,6 +29,12 @@ class FFAppState extends ChangeNotifier {
   set companySearch(String _value) {
     _companySearch = _value;
   }
+
+  String _employeeSearch = '';
+  String get employeeSearch => _employeeSearch;
+  set employeeSearch(String _value) {
+    _employeeSearch = _value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

@@ -44,13 +44,40 @@ class _$CompanyPostsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
     }
-    value = object.tags;
+    value = object.maleDominated;
     if (value != null) {
       result
-        ..add('tags')
-        ..add(serializers.serialize(value,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(String)])));
+        ..add('maleDominated')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.lgbtqFriendly;
+    if (value != null) {
+      result
+        ..add('lgbtqFriendly')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.safeEnvironment;
+    if (value != null) {
+      result
+        ..add('safeEnvironment')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.witnessHarassment;
+    if (value != null) {
+      result
+        ..add('witnessHarassment')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.facedHarassment;
+    if (value != null) {
+      result
+        ..add('facedHarassment')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
     }
     value = object.ffRef;
     if (value != null) {
@@ -89,11 +116,25 @@ class _$CompanyPostsRecordSerializer
           result.date = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime?;
           break;
-        case 'tags':
-          result.tags.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
+        case 'maleDominated':
+          result.maleDominated = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool?;
+          break;
+        case 'lgbtqFriendly':
+          result.lgbtqFriendly = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool?;
+          break;
+        case 'safeEnvironment':
+          result.safeEnvironment = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool?;
+          break;
+        case 'witnessHarassment':
+          result.witnessHarassment = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool?;
+          break;
+        case 'facedHarassment':
+          result.facedHarassment = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
@@ -116,7 +157,15 @@ class _$CompanyPostsRecord extends CompanyPostsRecord {
   @override
   final DateTime? date;
   @override
-  final BuiltList<String>? tags;
+  final bool? maleDominated;
+  @override
+  final bool? lgbtqFriendly;
+  @override
+  final bool? safeEnvironment;
+  @override
+  final bool? witnessHarassment;
+  @override
+  final bool? facedHarassment;
   @override
   final DocumentReference<Object?>? ffRef;
 
@@ -125,7 +174,15 @@ class _$CompanyPostsRecord extends CompanyPostsRecord {
       (new CompanyPostsRecordBuilder()..update(updates))._build();
 
   _$CompanyPostsRecord._(
-      {this.companyId, this.text, this.date, this.tags, this.ffRef})
+      {this.companyId,
+      this.text,
+      this.date,
+      this.maleDominated,
+      this.lgbtqFriendly,
+      this.safeEnvironment,
+      this.witnessHarassment,
+      this.facedHarassment,
+      this.ffRef})
       : super._();
 
   @override
@@ -144,15 +201,29 @@ class _$CompanyPostsRecord extends CompanyPostsRecord {
         companyId == other.companyId &&
         text == other.text &&
         date == other.date &&
-        tags == other.tags &&
+        maleDominated == other.maleDominated &&
+        lgbtqFriendly == other.lgbtqFriendly &&
+        safeEnvironment == other.safeEnvironment &&
+        witnessHarassment == other.witnessHarassment &&
+        facedHarassment == other.facedHarassment &&
         ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc($jc(0, companyId.hashCode), text.hashCode), date.hashCode),
-            tags.hashCode),
+        $jc(
+            $jc(
+                $jc(
+                    $jc(
+                        $jc(
+                            $jc($jc($jc(0, companyId.hashCode), text.hashCode),
+                                date.hashCode),
+                            maleDominated.hashCode),
+                        lgbtqFriendly.hashCode),
+                    safeEnvironment.hashCode),
+                witnessHarassment.hashCode),
+            facedHarassment.hashCode),
         ffRef.hashCode));
   }
 
@@ -162,7 +233,11 @@ class _$CompanyPostsRecord extends CompanyPostsRecord {
           ..add('companyId', companyId)
           ..add('text', text)
           ..add('date', date)
-          ..add('tags', tags)
+          ..add('maleDominated', maleDominated)
+          ..add('lgbtqFriendly', lgbtqFriendly)
+          ..add('safeEnvironment', safeEnvironment)
+          ..add('witnessHarassment', witnessHarassment)
+          ..add('facedHarassment', facedHarassment)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -185,9 +260,30 @@ class CompanyPostsRecordBuilder
   DateTime? get date => _$this._date;
   set date(DateTime? date) => _$this._date = date;
 
-  ListBuilder<String>? _tags;
-  ListBuilder<String> get tags => _$this._tags ??= new ListBuilder<String>();
-  set tags(ListBuilder<String>? tags) => _$this._tags = tags;
+  bool? _maleDominated;
+  bool? get maleDominated => _$this._maleDominated;
+  set maleDominated(bool? maleDominated) =>
+      _$this._maleDominated = maleDominated;
+
+  bool? _lgbtqFriendly;
+  bool? get lgbtqFriendly => _$this._lgbtqFriendly;
+  set lgbtqFriendly(bool? lgbtqFriendly) =>
+      _$this._lgbtqFriendly = lgbtqFriendly;
+
+  bool? _safeEnvironment;
+  bool? get safeEnvironment => _$this._safeEnvironment;
+  set safeEnvironment(bool? safeEnvironment) =>
+      _$this._safeEnvironment = safeEnvironment;
+
+  bool? _witnessHarassment;
+  bool? get witnessHarassment => _$this._witnessHarassment;
+  set witnessHarassment(bool? witnessHarassment) =>
+      _$this._witnessHarassment = witnessHarassment;
+
+  bool? _facedHarassment;
+  bool? get facedHarassment => _$this._facedHarassment;
+  set facedHarassment(bool? facedHarassment) =>
+      _$this._facedHarassment = facedHarassment;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -203,7 +299,11 @@ class CompanyPostsRecordBuilder
       _companyId = $v.companyId;
       _text = $v.text;
       _date = $v.date;
-      _tags = $v.tags?.toBuilder();
+      _maleDominated = $v.maleDominated;
+      _lgbtqFriendly = $v.lgbtqFriendly;
+      _safeEnvironment = $v.safeEnvironment;
+      _witnessHarassment = $v.witnessHarassment;
+      _facedHarassment = $v.facedHarassment;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -225,26 +325,17 @@ class CompanyPostsRecordBuilder
   CompanyPostsRecord build() => _build();
 
   _$CompanyPostsRecord _build() {
-    _$CompanyPostsRecord _$result;
-    try {
-      _$result = _$v ??
-          new _$CompanyPostsRecord._(
-              companyId: companyId,
-              text: text,
-              date: date,
-              tags: _tags?.build(),
-              ffRef: ffRef);
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'tags';
-        _tags?.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'CompanyPostsRecord', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result = _$v ??
+        new _$CompanyPostsRecord._(
+            companyId: companyId,
+            text: text,
+            date: date,
+            maleDominated: maleDominated,
+            lgbtqFriendly: lgbtqFriendly,
+            safeEnvironment: safeEnvironment,
+            witnessHarassment: witnessHarassment,
+            facedHarassment: facedHarassment,
+            ffRef: ffRef);
     replace(_$result);
     return _$result;
   }

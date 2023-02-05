@@ -5,29 +5,31 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class NewCompanyReview2Widget extends StatefulWidget {
-  const NewCompanyReview2Widget({Key? key}) : super(key: key);
+class ReportFormWidget extends StatefulWidget {
+  const ReportFormWidget({Key? key}) : super(key: key);
 
   @override
-  _NewCompanyReview2WidgetState createState() =>
-      _NewCompanyReview2WidgetState();
+  _ReportFormWidgetState createState() => _ReportFormWidgetState();
 }
 
-class _NewCompanyReview2WidgetState extends State<NewCompanyReview2Widget> {
-  TextEditingController? textController;
+class _ReportFormWidgetState extends State<ReportFormWidget> {
+  TextEditingController? textController1;
+  TextEditingController? textController2;
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    textController = TextEditingController();
+    textController1 = TextEditingController();
+    textController2 = TextEditingController();
   }
 
   @override
   void dispose() {
     _unfocusNode.dispose();
-    textController?.dispose();
+    textController1?.dispose();
+    textController2?.dispose();
     super.dispose();
   }
 
@@ -64,7 +66,7 @@ class _NewCompanyReview2WidgetState extends State<NewCompanyReview2Widget> {
                       color: Color(0x00FFFFFF),
                     ),
                     child: Text(
-                      'New Review',
+                      'Report',
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'jackfont',
                             color: FlutterFlowTheme.of(context).primaryBtnText,
@@ -96,10 +98,10 @@ class _NewCompanyReview2WidgetState extends State<NewCompanyReview2Widget> {
                         children: [
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(18, 15, 0, 0),
+                                EdgeInsetsDirectional.fromSTEB(18, 40, 0, 0),
                             child: Container(
                               width: 354,
-                              height: 500,
+                              height: 110,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEFDDFC),
                                 borderRadius: BorderRadius.circular(33),
@@ -108,11 +110,11 @@ class _NewCompanyReview2WidgetState extends State<NewCompanyReview2Widget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(27, 0, 0, 0),
                                 child: TextFormField(
-                                  controller: textController,
+                                  controller: textController1,
                                   autofocus: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    hintText: 'Description',
+                                    hintText: 'Reason',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .bodyText2
                                         .override(
@@ -172,7 +174,93 @@ class _NewCompanyReview2WidgetState extends State<NewCompanyReview2Widget> {
                                         fontWeight: FontWeight.w800,
                                         useGoogleFonts: false,
                                       ),
-                                  maxLines: null,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(18, 10, 0, 0),
+                            child: Container(
+                              width: 354,
+                              height: 390,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFEFDDFC),
+                                borderRadius: BorderRadius.circular(33),
+                              ),
+                              child: Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(27, 0, 0, 0),
+                                child: TextFormField(
+                                  controller: textController2,
+                                  autofocus: true,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    hintText: 'Feedback',
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .bodyText2
+                                        .override(
+                                          fontFamily: 'jackfont',
+                                          color: Color(0xFF58197E),
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w800,
+                                          useGoogleFonts: false,
+                                        ),
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    errorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    focusedErrorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText2
+                                      .override(
+                                        fontFamily: 'jackfont',
+                                        color: Color(0xFF58197E),
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w800,
+                                        useGoogleFonts: false,
+                                      ),
                                 ),
                               ),
                             ),
@@ -180,7 +268,7 @@ class _NewCompanyReview2WidgetState extends State<NewCompanyReview2Widget> {
                         ],
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(50, 57, 50, 12),
+                        padding: EdgeInsetsDirectional.fromSTEB(50, 29, 50, 12),
                         child: Container(
                           width: 232,
                           height: 58,

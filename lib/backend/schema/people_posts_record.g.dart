@@ -21,14 +21,6 @@ class _$PeoplePostsRecordSerializer
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[];
     Object? value;
-    value = object.personId;
-    if (value != null) {
-      result
-        ..add('personId')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                DocumentReference, const [const FullType.nullable(Object)])));
-    }
     value = object.text;
     if (value != null) {
       result
@@ -43,13 +35,55 @@ class _$PeoplePostsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
     }
-    value = object.tags;
+    value = object.personId;
     if (value != null) {
       result
-        ..add('tags')
+        ..add('personId')
         ..add(serializers.serialize(value,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(String)])));
+            specifiedType: const FullType(
+                DocumentReference, const [const FullType.nullable(Object)])));
+    }
+    value = object.aggressive;
+    if (value != null) {
+      result
+        ..add('aggressive')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.reflects;
+    if (value != null) {
+      result
+        ..add('reflects')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.approachable;
+    if (value != null) {
+      result
+        ..add('approachable')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.witnessedHarassing;
+    if (value != null) {
+      result
+        ..add('witnessedHarassing')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.facedHarassment;
+    if (value != null) {
+      result
+        ..add('facedHarassment')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.position;
+    if (value != null) {
+      result
+        ..add('position')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
     }
     value = object.ffRef;
     if (value != null) {
@@ -74,12 +108,6 @@ class _$PeoplePostsRecordSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'personId':
-          result.personId = serializers.deserialize(value,
-              specifiedType: const FullType(DocumentReference, const [
-                const FullType.nullable(Object)
-              ])) as DocumentReference<Object?>?;
-          break;
         case 'text':
           result.text = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -88,11 +116,35 @@ class _$PeoplePostsRecordSerializer
           result.date = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime?;
           break;
-        case 'tags':
-          result.tags.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
+        case 'personId':
+          result.personId = serializers.deserialize(value,
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
+          break;
+        case 'aggressive':
+          result.aggressive = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool?;
+          break;
+        case 'reflects':
+          result.reflects = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool?;
+          break;
+        case 'approachable':
+          result.approachable = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool?;
+          break;
+        case 'witnessedHarassing':
+          result.witnessedHarassing = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool?;
+          break;
+        case 'facedHarassment':
+          result.facedHarassment = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool?;
+          break;
+        case 'position':
+          result.position = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
@@ -109,13 +161,23 @@ class _$PeoplePostsRecordSerializer
 
 class _$PeoplePostsRecord extends PeoplePostsRecord {
   @override
-  final DocumentReference<Object?>? personId;
-  @override
   final String? text;
   @override
   final DateTime? date;
   @override
-  final BuiltList<String>? tags;
+  final DocumentReference<Object?>? personId;
+  @override
+  final bool? aggressive;
+  @override
+  final bool? reflects;
+  @override
+  final bool? approachable;
+  @override
+  final bool? witnessedHarassing;
+  @override
+  final bool? facedHarassment;
+  @override
+  final String? position;
   @override
   final DocumentReference<Object?>? ffRef;
 
@@ -124,7 +186,16 @@ class _$PeoplePostsRecord extends PeoplePostsRecord {
       (new PeoplePostsRecordBuilder()..update(updates))._build();
 
   _$PeoplePostsRecord._(
-      {this.personId, this.text, this.date, this.tags, this.ffRef})
+      {this.text,
+      this.date,
+      this.personId,
+      this.aggressive,
+      this.reflects,
+      this.approachable,
+      this.witnessedHarassing,
+      this.facedHarassment,
+      this.position,
+      this.ffRef})
       : super._();
 
   @override
@@ -139,28 +210,50 @@ class _$PeoplePostsRecord extends PeoplePostsRecord {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is PeoplePostsRecord &&
-        personId == other.personId &&
         text == other.text &&
         date == other.date &&
-        tags == other.tags &&
+        personId == other.personId &&
+        aggressive == other.aggressive &&
+        reflects == other.reflects &&
+        approachable == other.approachable &&
+        witnessedHarassing == other.witnessedHarassing &&
+        facedHarassment == other.facedHarassment &&
+        position == other.position &&
         ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc($jc(0, personId.hashCode), text.hashCode), date.hashCode),
-            tags.hashCode),
+        $jc(
+            $jc(
+                $jc(
+                    $jc(
+                        $jc(
+                            $jc(
+                                $jc($jc($jc(0, text.hashCode), date.hashCode),
+                                    personId.hashCode),
+                                aggressive.hashCode),
+                            reflects.hashCode),
+                        approachable.hashCode),
+                    witnessedHarassing.hashCode),
+                facedHarassment.hashCode),
+            position.hashCode),
         ffRef.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'PeoplePostsRecord')
-          ..add('personId', personId)
           ..add('text', text)
           ..add('date', date)
-          ..add('tags', tags)
+          ..add('personId', personId)
+          ..add('aggressive', aggressive)
+          ..add('reflects', reflects)
+          ..add('approachable', approachable)
+          ..add('witnessedHarassing', witnessedHarassing)
+          ..add('facedHarassment', facedHarassment)
+          ..add('position', position)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -170,11 +263,6 @@ class PeoplePostsRecordBuilder
     implements Builder<PeoplePostsRecord, PeoplePostsRecordBuilder> {
   _$PeoplePostsRecord? _$v;
 
-  DocumentReference<Object?>? _personId;
-  DocumentReference<Object?>? get personId => _$this._personId;
-  set personId(DocumentReference<Object?>? personId) =>
-      _$this._personId = personId;
-
   String? _text;
   String? get text => _$this._text;
   set text(String? text) => _$this._text = text;
@@ -183,9 +271,36 @@ class PeoplePostsRecordBuilder
   DateTime? get date => _$this._date;
   set date(DateTime? date) => _$this._date = date;
 
-  ListBuilder<String>? _tags;
-  ListBuilder<String> get tags => _$this._tags ??= new ListBuilder<String>();
-  set tags(ListBuilder<String>? tags) => _$this._tags = tags;
+  DocumentReference<Object?>? _personId;
+  DocumentReference<Object?>? get personId => _$this._personId;
+  set personId(DocumentReference<Object?>? personId) =>
+      _$this._personId = personId;
+
+  bool? _aggressive;
+  bool? get aggressive => _$this._aggressive;
+  set aggressive(bool? aggressive) => _$this._aggressive = aggressive;
+
+  bool? _reflects;
+  bool? get reflects => _$this._reflects;
+  set reflects(bool? reflects) => _$this._reflects = reflects;
+
+  bool? _approachable;
+  bool? get approachable => _$this._approachable;
+  set approachable(bool? approachable) => _$this._approachable = approachable;
+
+  bool? _witnessedHarassing;
+  bool? get witnessedHarassing => _$this._witnessedHarassing;
+  set witnessedHarassing(bool? witnessedHarassing) =>
+      _$this._witnessedHarassing = witnessedHarassing;
+
+  bool? _facedHarassment;
+  bool? get facedHarassment => _$this._facedHarassment;
+  set facedHarassment(bool? facedHarassment) =>
+      _$this._facedHarassment = facedHarassment;
+
+  String? _position;
+  String? get position => _$this._position;
+  set position(String? position) => _$this._position = position;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -198,10 +313,15 @@ class PeoplePostsRecordBuilder
   PeoplePostsRecordBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _personId = $v.personId;
       _text = $v.text;
       _date = $v.date;
-      _tags = $v.tags?.toBuilder();
+      _personId = $v.personId;
+      _aggressive = $v.aggressive;
+      _reflects = $v.reflects;
+      _approachable = $v.approachable;
+      _witnessedHarassing = $v.witnessedHarassing;
+      _facedHarassment = $v.facedHarassment;
+      _position = $v.position;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -223,26 +343,18 @@ class PeoplePostsRecordBuilder
   PeoplePostsRecord build() => _build();
 
   _$PeoplePostsRecord _build() {
-    _$PeoplePostsRecord _$result;
-    try {
-      _$result = _$v ??
-          new _$PeoplePostsRecord._(
-              personId: personId,
-              text: text,
-              date: date,
-              tags: _tags?.build(),
-              ffRef: ffRef);
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'tags';
-        _tags?.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'PeoplePostsRecord', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result = _$v ??
+        new _$PeoplePostsRecord._(
+            text: text,
+            date: date,
+            personId: personId,
+            aggressive: aggressive,
+            reflects: reflects,
+            approachable: approachable,
+            witnessedHarassing: witnessedHarassing,
+            facedHarassment: facedHarassment,
+            position: position,
+            ffRef: ffRef);
     replace(_$result);
     return _$result;
   }

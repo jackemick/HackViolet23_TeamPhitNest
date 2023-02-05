@@ -17,7 +17,15 @@ abstract class CompanyPostsRecord
 
   DateTime? get date;
 
-  BuiltList<String>? get tags;
+  bool? get maleDominated;
+
+  bool? get lgbtqFriendly;
+
+  bool? get safeEnvironment;
+
+  bool? get witnessHarassment;
+
+  bool? get facedHarassment;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
@@ -25,7 +33,11 @@ abstract class CompanyPostsRecord
 
   static void _initializeBuilder(CompanyPostsRecordBuilder builder) => builder
     ..text = ''
-    ..tags = ListBuilder();
+    ..maleDominated = false
+    ..lgbtqFriendly = false
+    ..safeEnvironment = false
+    ..witnessHarassment = false
+    ..facedHarassment = false;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('company_posts');
@@ -53,6 +65,11 @@ Map<String, dynamic> createCompanyPostsRecordData({
   DocumentReference? companyId,
   String? text,
   DateTime? date,
+  bool? maleDominated,
+  bool? lgbtqFriendly,
+  bool? safeEnvironment,
+  bool? witnessHarassment,
+  bool? facedHarassment,
 }) {
   final firestoreData = serializers.toFirestore(
     CompanyPostsRecord.serializer,
@@ -61,7 +78,11 @@ Map<String, dynamic> createCompanyPostsRecordData({
         ..companyId = companyId
         ..text = text
         ..date = date
-        ..tags = null,
+        ..maleDominated = maleDominated
+        ..lgbtqFriendly = lgbtqFriendly
+        ..safeEnvironment = safeEnvironment
+        ..witnessHarassment = witnessHarassment
+        ..facedHarassment = facedHarassment,
     ),
   );
 

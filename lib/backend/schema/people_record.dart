@@ -10,22 +10,19 @@ abstract class PeopleRecord
     implements Built<PeopleRecord, PeopleRecordBuilder> {
   static Serializer<PeopleRecord> get serializer => _$peopleRecordSerializer;
 
-  String? get firstName;
-
-  String? get lastName;
-
   DocumentReference? get companyId;
 
-  String? get position;
+  String? get department;
+
+  String? get fullName;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(PeopleRecordBuilder builder) => builder
-    ..firstName = ''
-    ..lastName = ''
-    ..position = '';
+    ..department = ''
+    ..fullName = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('people');
@@ -49,19 +46,17 @@ abstract class PeopleRecord
 }
 
 Map<String, dynamic> createPeopleRecordData({
-  String? firstName,
-  String? lastName,
   DocumentReference? companyId,
-  String? position,
+  String? department,
+  String? fullName,
 }) {
   final firestoreData = serializers.toFirestore(
     PeopleRecord.serializer,
     PeopleRecord(
       (p) => p
-        ..firstName = firstName
-        ..lastName = lastName
         ..companyId = companyId
-        ..position = position,
+        ..department = department
+        ..fullName = fullName,
     ),
   );
 

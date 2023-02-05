@@ -20,20 +20,6 @@ class _$PeopleRecordSerializer implements StructuredSerializer<PeopleRecord> {
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[];
     Object? value;
-    value = object.firstName;
-    if (value != null) {
-      result
-        ..add('firstName')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    value = object.lastName;
-    if (value != null) {
-      result
-        ..add('lastName')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     value = object.companyId;
     if (value != null) {
       result
@@ -42,10 +28,17 @@ class _$PeopleRecordSerializer implements StructuredSerializer<PeopleRecord> {
             specifiedType: const FullType(
                 DocumentReference, const [const FullType.nullable(Object)])));
     }
-    value = object.position;
+    value = object.department;
     if (value != null) {
       result
-        ..add('position')
+        ..add('department')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.fullName;
+    if (value != null) {
+      result
+        ..add('fullName')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -72,22 +65,18 @@ class _$PeopleRecordSerializer implements StructuredSerializer<PeopleRecord> {
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'firstName':
-          result.firstName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'lastName':
-          result.lastName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
         case 'companyId':
           result.companyId = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
                 const FullType.nullable(Object)
               ])) as DocumentReference<Object?>?;
           break;
-        case 'position':
-          result.position = serializers.deserialize(value,
+        case 'department':
+          result.department = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'fullName':
+          result.fullName = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'Document__Reference__Field':
@@ -105,25 +94,18 @@ class _$PeopleRecordSerializer implements StructuredSerializer<PeopleRecord> {
 
 class _$PeopleRecord extends PeopleRecord {
   @override
-  final String? firstName;
-  @override
-  final String? lastName;
-  @override
   final DocumentReference<Object?>? companyId;
   @override
-  final String? position;
+  final String? department;
+  @override
+  final String? fullName;
   @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$PeopleRecord([void Function(PeopleRecordBuilder)? updates]) =>
       (new PeopleRecordBuilder()..update(updates))._build();
 
-  _$PeopleRecord._(
-      {this.firstName,
-      this.lastName,
-      this.companyId,
-      this.position,
-      this.ffRef})
+  _$PeopleRecord._({this.companyId, this.department, this.fullName, this.ffRef})
       : super._();
 
   @override
@@ -137,30 +119,26 @@ class _$PeopleRecord extends PeopleRecord {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is PeopleRecord &&
-        firstName == other.firstName &&
-        lastName == other.lastName &&
         companyId == other.companyId &&
-        position == other.position &&
+        department == other.department &&
+        fullName == other.fullName &&
         ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc(
-            $jc($jc($jc(0, firstName.hashCode), lastName.hashCode),
-                companyId.hashCode),
-            position.hashCode),
+        $jc($jc($jc(0, companyId.hashCode), department.hashCode),
+            fullName.hashCode),
         ffRef.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'PeopleRecord')
-          ..add('firstName', firstName)
-          ..add('lastName', lastName)
           ..add('companyId', companyId)
-          ..add('position', position)
+          ..add('department', department)
+          ..add('fullName', fullName)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -170,22 +148,18 @@ class PeopleRecordBuilder
     implements Builder<PeopleRecord, PeopleRecordBuilder> {
   _$PeopleRecord? _$v;
 
-  String? _firstName;
-  String? get firstName => _$this._firstName;
-  set firstName(String? firstName) => _$this._firstName = firstName;
-
-  String? _lastName;
-  String? get lastName => _$this._lastName;
-  set lastName(String? lastName) => _$this._lastName = lastName;
-
   DocumentReference<Object?>? _companyId;
   DocumentReference<Object?>? get companyId => _$this._companyId;
   set companyId(DocumentReference<Object?>? companyId) =>
       _$this._companyId = companyId;
 
-  String? _position;
-  String? get position => _$this._position;
-  set position(String? position) => _$this._position = position;
+  String? _department;
+  String? get department => _$this._department;
+  set department(String? department) => _$this._department = department;
+
+  String? _fullName;
+  String? get fullName => _$this._fullName;
+  set fullName(String? fullName) => _$this._fullName = fullName;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -198,10 +172,9 @@ class PeopleRecordBuilder
   PeopleRecordBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _firstName = $v.firstName;
-      _lastName = $v.lastName;
       _companyId = $v.companyId;
-      _position = $v.position;
+      _department = $v.department;
+      _fullName = $v.fullName;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -225,10 +198,9 @@ class PeopleRecordBuilder
   _$PeopleRecord _build() {
     final _$result = _$v ??
         new _$PeopleRecord._(
-            firstName: firstName,
-            lastName: lastName,
             companyId: companyId,
-            position: position,
+            department: department,
+            fullName: fullName,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

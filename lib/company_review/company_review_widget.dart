@@ -1,3 +1,5 @@
+import '../backend/backend.dart';
+import '../components/styled_text_field_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +8,12 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 
 class CompanyReviewWidget extends StatefulWidget {
-  const CompanyReviewWidget({Key? key}) : super(key: key);
+  const CompanyReviewWidget({
+    Key? key,
+    this.company,
+  }) : super(key: key);
+
+  final CompaniesRecord? company;
 
   @override
   _CompanyReviewWidgetState createState() => _CompanyReviewWidgetState();
@@ -46,17 +53,15 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Align(
-                  alignment: AlignmentDirectional(0, -1),
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 80, 0, 30),
-                    child: Container(
-                      width: 353,
-                      height: 53,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: BorderRadius.circular(18),
-                      ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(20, 80, 20, 28),
+                  child: InkWell(
+                    onTap: () async {
+                      context.pop();
+                    },
+                    child: StyledTextFieldWidget(
+                      hintText: 'Search for other companies...',
+                      onChanged: () async {},
                     ),
                   ),
                 ),
@@ -75,7 +80,7 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
                             borderRadius: BorderRadius.circular(18),
                           ),
                           child: Text(
-                            'Company X',
+                            widget.company!.name!,
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
                                       fontFamily: 'Avenir Reg',
@@ -94,52 +99,87 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
                         children: [
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
-                            child: Container(
-                              width: 175,
-                              height: 34,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFE2B9FF),
-                                borderRadius: BorderRadius.circular(18),
-                              ),
-                              child: Align(
-                                alignment: AlignmentDirectional(0, 0),
-                                child: Text(
-                                  'Leave a Review',
-                                  textAlign: TextAlign.center,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Avenir Reg',
-                                        color: Color(0xFF58197E),
-                                        fontSize: 15,
-                                        useGoogleFonts: false,
-                                      ),
+                            child: InkWell(
+                              onTap: () async {
+                                context.pushNamed(
+                                  'NewCompanyReview',
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType:
+                                          PageTransitionType.topToBottom,
+                                    ),
+                                  },
+                                );
+                              },
+                              child: Container(
+                                width: 175,
+                                height: 34,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFE2B9FF),
+                                  borderRadius: BorderRadius.circular(18),
+                                ),
+                                child: Align(
+                                  alignment: AlignmentDirectional(0, 0),
+                                  child: Text(
+                                    'Leave a Review',
+                                    textAlign: TextAlign.center,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Avenir Reg',
+                                          color: Color(0xFF58197E),
+                                          fontSize: 15,
+                                          useGoogleFonts: false,
+                                        ),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                            child: Container(
-                              width: 175,
-                              height: 34,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFE2B9FF),
-                                borderRadius: BorderRadius.circular(18),
-                              ),
-                              child: Align(
-                                alignment: AlignmentDirectional(0, 0),
-                                child: Text(
-                                  'Find Employees',
-                                  textAlign: TextAlign.center,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Avenir Reg',
-                                        color: Color(0xFF58197E),
-                                        fontSize: 15,
-                                        useGoogleFonts: false,
-                                      ),
+                            child: InkWell(
+                              onTap: () async {
+                                context.pushNamed(
+                                  'FindEmployees',
+                                  queryParams: {
+                                    'company': serializeParam(
+                                      widget.company,
+                                      ParamType.Document,
+                                    ),
+                                  }.withoutNulls,
+                                  extra: <String, dynamic>{
+                                    'company': widget.company,
+                                    kTransitionInfoKey: TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType:
+                                          PageTransitionType.rightToLeft,
+                                    ),
+                                  },
+                                );
+                              },
+                              child: Container(
+                                width: 175,
+                                height: 34,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFE2B9FF),
+                                  borderRadius: BorderRadius.circular(18),
+                                ),
+                                child: Align(
+                                  alignment: AlignmentDirectional(0, 0),
+                                  child: Text(
+                                    'Find Employees',
+                                    textAlign: TextAlign.center,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Avenir Reg',
+                                          color: Color(0xFF58197E),
+                                          fontSize: 15,
+                                          useGoogleFonts: false,
+                                        ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -149,247 +189,335 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Align(
-                        alignment: AlignmentDirectional(-0.55, 0),
-                        child: Text(
-                          'Male Dominated',
-                          style:
-                              FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Avenir Reg',
-                                    fontStyle: FontStyle.italic,
-                                    useGoogleFonts: false,
-                                  ),
-                        ),
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional(0, 0),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(59, 0, 0, 0),
-                          child: LinearPercentIndicator(
-                            percent: 0.5,
-                            width: 272,
-                            lineHeight: 11,
-                            animation: true,
-                            progressColor: Color(0xFFCD88FE),
-                            backgroundColor: Color(0xFFE2B9FF),
-                            barRadius: Radius.circular(12),
-                            padding: EdgeInsets.zero,
+                Expanded(
+                  child: StreamBuilder<List<CompanyPostsRecord>>(
+                    stream: queryCompanyPostsRecord(
+                      queryBuilder: (companyPostsRecord) =>
+                          companyPostsRecord.where('companyId',
+                              isEqualTo: widget.company!.reference),
+                    ),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: CircularProgressIndicator(
+                              color: FlutterFlowTheme.of(context).primaryColor,
+                            ),
                           ),
+                        );
+                      }
+                      List<CompanyPostsRecord> containerCompanyPostsRecordList =
+                          snapshot.data!;
+                      return Container(
+                        width: double.infinity,
+                        height: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Color(0x00FFFFFF),
                         ),
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional(-0.67, 0),
-                        child: Text(
-                          'x%',
-                          style:
-                              FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Avenir Reg',
-                                    fontWeight: FontWeight.w600,
-                                    fontStyle: FontStyle.italic,
-                                    useGoogleFonts: false,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Align(
+                                    alignment: AlignmentDirectional(-0.55, 0),
+                                    child: Text(
+                                      'Male Dominated',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Avenir Reg',
+                                            fontStyle: FontStyle.italic,
+                                            useGoogleFonts: false,
+                                          ),
+                                    ),
                                   ),
+                                  Align(
+                                    alignment: AlignmentDirectional(0, 0),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          59, 0, 0, 0),
+                                      child: LinearPercentIndicator(
+                                        percent: 0.5,
+                                        width: 272,
+                                        lineHeight: 11,
+                                        animation: true,
+                                        progressColor: Color(0xFFCD88FE),
+                                        backgroundColor: Color(0xFFE2B9FF),
+                                        barRadius: Radius.circular(12),
+                                        padding: EdgeInsets.zero,
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(-0.67, 0),
+                                    child: Text(
+                                      formatNumber(
+                                        containerCompanyPostsRecordList.length,
+                                        formatType: FormatType.custom,
+                                        format:
+                                            '\${() {int count = 0; for (int i = 0; i < containerCompanyPostsRecordList.length; i++){ if(containerCompanyPostsRecordList[i].maleDominated) {count++;}}return count / containerCompanyPostsRecordList.length;}()}',
+                                        locale: '',
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Avenir Reg',
+                                            fontWeight: FontWeight.w600,
+                                            fontStyle: FontStyle.italic,
+                                            useGoogleFonts: false,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Align(
+                                    alignment: AlignmentDirectional(-0.55, 0),
+                                    child: Text(
+                                      'LGBTQ+ Friendly',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Avenir Reg',
+                                            fontStyle: FontStyle.italic,
+                                            useGoogleFonts: false,
+                                          ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(0.9, 0),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          59, 0, 59, 0),
+                                      child: LinearPercentIndicator(
+                                        percent: 0.5,
+                                        width: 272,
+                                        lineHeight: 11,
+                                        animation: true,
+                                        progressColor: Color(0xFFCD88FE),
+                                        backgroundColor: Color(0xFFE2B9FF),
+                                        barRadius: Radius.circular(12),
+                                        padding: EdgeInsets.zero,
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(-0.67, 0),
+                                    child: Text(
+                                      formatNumber(
+                                        containerCompanyPostsRecordList.length,
+                                        formatType: FormatType.custom,
+                                        format:
+                                            '\${() {int count = 0; for (int i = 0; i < containerCompanyPostsRecordList.length; i++){if(containerCompanyPostsRecordList[i].lgbtqFriendly) {count++;}}return count / containerCompanyPostsRecordList.length;}()}',
+                                        locale: '',
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Avenir Reg',
+                                            fontStyle: FontStyle.italic,
+                                            useGoogleFonts: false,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Align(
+                                    alignment: AlignmentDirectional(-0.55, 0),
+                                    child: Text(
+                                      'Safe Environment',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Avenir Reg',
+                                            fontStyle: FontStyle.italic,
+                                            useGoogleFonts: false,
+                                          ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(0, 0),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          59, 0, 0, 0),
+                                      child: LinearPercentIndicator(
+                                        percent: 0.5,
+                                        width: 272,
+                                        lineHeight: 11,
+                                        animation: true,
+                                        progressColor: Color(0xFFCD88FE),
+                                        backgroundColor: Color(0xFFE2B9FF),
+                                        barRadius: Radius.circular(12),
+                                        padding: EdgeInsets.zero,
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(-0.67, 0),
+                                    child: Text(
+                                      formatNumber(
+                                        containerCompanyPostsRecordList.length,
+                                        formatType: FormatType.custom,
+                                        format:
+                                            '\${() {int count = 0; for (int i = 0; i < containerCompanyPostsRecordList.length; i++){if(containerCompanyPostsRecordList[i].safeEnvironment) {count++;}}return count / containerCompanyPostsRecordList.length;}()}',
+                                        locale: '',
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Avenir Reg',
+                                            fontStyle: FontStyle.italic,
+                                            useGoogleFonts: false,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Align(
+                                    alignment: AlignmentDirectional(-0.48, 0),
+                                    child: Text(
+                                      'Witnessed Harassment',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Avenir Reg',
+                                            fontStyle: FontStyle.italic,
+                                            useGoogleFonts: false,
+                                          ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(0, 0),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          59, 0, 0, 0),
+                                      child: LinearPercentIndicator(
+                                        percent: 0.5,
+                                        width: 272,
+                                        lineHeight: 11,
+                                        animation: true,
+                                        progressColor: Color(0xFFCD88FE),
+                                        backgroundColor: Color(0xFFE2B9FF),
+                                        barRadius: Radius.circular(12),
+                                        padding: EdgeInsets.zero,
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(-0.67, 0),
+                                    child: Text(
+                                      formatNumber(
+                                        containerCompanyPostsRecordList.length,
+                                        formatType: FormatType.custom,
+                                        format:
+                                            '\${() {int count = 0; for (int i = 0; i < containerCompanyPostsRecordList.length; i++){if(containerCompanyPostsRecordList[i].witnessHarassment) {count++;}}return count / containerCompanyPostsRecordList.length;}()}',
+                                        locale: '',
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Avenir Reg',
+                                            fontStyle: FontStyle.italic,
+                                            useGoogleFonts: false,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Align(
+                                    alignment: AlignmentDirectional(-0.54, 0),
+                                    child: Text(
+                                      'Faced Harassment',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Avenir Reg',
+                                            fontStyle: FontStyle.italic,
+                                            useGoogleFonts: false,
+                                          ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(0, 0),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          59, 0, 0, 0),
+                                      child: LinearPercentIndicator(
+                                        percent: 0.5,
+                                        width: 272,
+                                        lineHeight: 11,
+                                        animation: true,
+                                        progressColor: Color(0xFFCD88FE),
+                                        backgroundColor: Color(0xFFE2B9FF),
+                                        barRadius: Radius.circular(12),
+                                        padding: EdgeInsets.zero,
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(-0.67, 0),
+                                    child: Text(
+                                      formatNumber(
+                                        containerCompanyPostsRecordList.length,
+                                        formatType: FormatType.custom,
+                                        format:
+                                            '\${() {int count = 0; for (int i = 0; i < containerCompanyPostsRecordList.length; i++){if(containerCompanyPostsRecordList[i].facedHarassment) {count++;}}return count / containerCompanyPostsRecordList.length;}()}',
+                                        locale: '',
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Avenir Reg',
+                                            fontStyle: FontStyle.italic,
+                                            useGoogleFonts: false,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
+                      );
+                    },
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Align(
-                        alignment: AlignmentDirectional(-0.55, 0),
-                        child: Text(
-                          'LGBTQ+ Friendly',
-                          style:
-                              FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Avenir Reg',
-                                    fontStyle: FontStyle.italic,
-                                    useGoogleFonts: false,
-                                  ),
-                        ),
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional(0.9, 0),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(59, 0, 59, 0),
-                          child: LinearPercentIndicator(
-                            percent: 0.5,
-                            width: 272,
-                            lineHeight: 11,
-                            animation: true,
-                            progressColor: Color(0xFFCD88FE),
-                            backgroundColor: Color(0xFFE2B9FF),
-                            barRadius: Radius.circular(12),
-                            padding: EdgeInsets.zero,
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional(-0.67, 0),
-                        child: Text(
-                          'x%',
-                          style:
-                              FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Avenir Reg',
-                                    fontStyle: FontStyle.italic,
-                                    useGoogleFonts: false,
-                                  ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Align(
-                        alignment: AlignmentDirectional(-0.55, 0),
-                        child: Text(
-                          'Safe Environment',
-                          style:
-                              FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Avenir Reg',
-                                    fontStyle: FontStyle.italic,
-                                    useGoogleFonts: false,
-                                  ),
-                        ),
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional(0, 0),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(59, 0, 0, 0),
-                          child: LinearPercentIndicator(
-                            percent: 0.5,
-                            width: 272,
-                            lineHeight: 11,
-                            animation: true,
-                            progressColor: Color(0xFFCD88FE),
-                            backgroundColor: Color(0xFFE2B9FF),
-                            barRadius: Radius.circular(12),
-                            padding: EdgeInsets.zero,
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional(-0.67, 0),
-                        child: Text(
-                          'x%',
-                          style:
-                              FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Avenir Reg',
-                                    fontStyle: FontStyle.italic,
-                                    useGoogleFonts: false,
-                                  ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Align(
-                        alignment: AlignmentDirectional(-0.48, 0),
-                        child: Text(
-                          'Witnessed Harassment',
-                          style:
-                              FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Avenir Reg',
-                                    fontStyle: FontStyle.italic,
-                                    useGoogleFonts: false,
-                                  ),
-                        ),
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional(0, 0),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(59, 0, 0, 0),
-                          child: LinearPercentIndicator(
-                            percent: 0.5,
-                            width: 272,
-                            lineHeight: 11,
-                            animation: true,
-                            progressColor: Color(0xFFCD88FE),
-                            backgroundColor: Color(0xFFE2B9FF),
-                            barRadius: Radius.circular(12),
-                            padding: EdgeInsets.zero,
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional(-0.67, 0),
-                        child: Text(
-                          'x%',
-                          style:
-                              FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Avenir Reg',
-                                    fontStyle: FontStyle.italic,
-                                    useGoogleFonts: false,
-                                  ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Align(
-                        alignment: AlignmentDirectional(-0.54, 0),
-                        child: Text(
-                          'Faced Harassment',
-                          style:
-                              FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Avenir Reg',
-                                    fontStyle: FontStyle.italic,
-                                    useGoogleFonts: false,
-                                  ),
-                        ),
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional(0, 0),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(59, 0, 0, 0),
-                          child: LinearPercentIndicator(
-                            percent: 0.5,
-                            width: 272,
-                            lineHeight: 11,
-                            animation: true,
-                            progressColor: Color(0xFFCD88FE),
-                            backgroundColor: Color(0xFFE2B9FF),
-                            barRadius: Radius.circular(12),
-                            padding: EdgeInsets.zero,
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional(-0.67, 0),
-                        child: Text(
-                          'x%',
-                          style:
-                              FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Avenir Reg',
-                                    fontStyle: FontStyle.italic,
-                                    useGoogleFonts: false,
-                                  ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                Spacer(),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 60, 0, 0),
                   child: Container(
@@ -400,6 +528,7 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
                     ),
                     child: Text(
                       'View Reviews',
+                      textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Avenir Reg',
                             color: Color(0xFF58197E),
@@ -408,10 +537,13 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
                     ),
                   ),
                 ),
-                Icon(
-                  Icons.keyboard_arrow_down,
-                  color: Color(0xFF58197E),
-                  size: 24,
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                  child: Icon(
+                    Icons.keyboard_arrow_down,
+                    color: Color(0xFF58197E),
+                    size: 24,
+                  ),
                 ),
               ],
             ),

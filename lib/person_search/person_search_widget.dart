@@ -32,6 +32,15 @@ class _PersonSearchWidgetState extends State<PersonSearchWidget> {
             end: AlignmentDirectional(0, 1),
           ),
         ),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [],
+            ),
+          ],
+        ),
       ),
     );
   }

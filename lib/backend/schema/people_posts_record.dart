@@ -11,13 +11,23 @@ abstract class PeoplePostsRecord
   static Serializer<PeoplePostsRecord> get serializer =>
       _$peoplePostsRecordSerializer;
 
-  DocumentReference? get personId;
-
   String? get text;
 
   DateTime? get date;
 
-  BuiltList<String>? get tags;
+  DocumentReference? get personId;
+
+  bool? get aggressive;
+
+  bool? get reflects;
+
+  bool? get approachable;
+
+  bool? get witnessedHarassing;
+
+  bool? get facedHarassment;
+
+  String? get position;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
@@ -25,7 +35,12 @@ abstract class PeoplePostsRecord
 
   static void _initializeBuilder(PeoplePostsRecordBuilder builder) => builder
     ..text = ''
-    ..tags = ListBuilder();
+    ..aggressive = false
+    ..reflects = false
+    ..approachable = false
+    ..witnessedHarassing = false
+    ..facedHarassment = false
+    ..position = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('people_posts');
@@ -49,18 +64,29 @@ abstract class PeoplePostsRecord
 }
 
 Map<String, dynamic> createPeoplePostsRecordData({
-  DocumentReference? personId,
   String? text,
   DateTime? date,
+  DocumentReference? personId,
+  bool? aggressive,
+  bool? reflects,
+  bool? approachable,
+  bool? witnessedHarassing,
+  bool? facedHarassment,
+  String? position,
 }) {
   final firestoreData = serializers.toFirestore(
     PeoplePostsRecord.serializer,
     PeoplePostsRecord(
       (p) => p
-        ..personId = personId
         ..text = text
         ..date = date
-        ..tags = null,
+        ..personId = personId
+        ..aggressive = aggressive
+        ..reflects = reflects
+        ..approachable = approachable
+        ..witnessedHarassing = witnessedHarassing
+        ..facedHarassment = facedHarassment
+        ..position = position,
     ),
   );
 
