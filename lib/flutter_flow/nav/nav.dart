@@ -53,6 +53,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'company_search',
               path: 'companySearch',
               builder: (context, params) => CompanySearchWidget(),
+            ),
+            FFRoute(
+              name: 'new_emp_review1',
+              path: 'newEmpReview1',
+              builder: (context, params) => NewEmpReview1Widget(),
+            ),
+            FFRoute(
+              name: 'new_emp_review2',
+              path: 'newEmpReview2',
+              builder: (context, params) => NewEmpReview2Widget(),
+            ),
+            FFRoute(
+              name: 'review_suck',
+              path: 'reviewSuck',
+              builder: (context, params) => ReviewSuckWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
