@@ -54,9 +54,7 @@ class _CompanySearchCardWidgetState extends State<CompanySearchCardWidget> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Align(
-                  alignment: AlignmentDirectional(0, 0),
-                  child: Text(
+                Text(
                     widget.company!.name!,
                     textAlign: TextAlign.center,
                     style: FlutterFlowTheme.of(context).bodyText1.override(
@@ -68,10 +66,7 @@ class _CompanySearchCardWidgetState extends State<CompanySearchCardWidget> {
                           useGoogleFonts: false,
                         ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 6, 0, 0),
-                  child: Text(
+               Text(
                     widget.company!.city!,
                     style: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Poppins',
@@ -80,7 +75,7 @@ class _CompanySearchCardWidgetState extends State<CompanySearchCardWidget> {
                           fontWeight: FontWeight.w300,
                         ),
                   ),
-                ),
+                
               ],
             ),
           ],

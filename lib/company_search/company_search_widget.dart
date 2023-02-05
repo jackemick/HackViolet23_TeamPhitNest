@@ -19,6 +19,8 @@ class CompanySearchWidget extends StatefulWidget {
 class _CompanySearchWidgetState extends State<CompanySearchWidget> {
   List<CompaniesRecord> simpleSearchResults = [];
   TextEditingController? textController;
+  final _globalKey = GlobalKey();
+  final _focusNode = FocusNode();
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -66,10 +68,12 @@ class _CompanySearchWidgetState extends State<CompanySearchWidget> {
                     child: Text(
                       'Enter Company To Get Started',
                       textAlign: TextAlign.center,
+                      
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Avenir',
                             color: Color(0xFFFBFBFB),
-                            fontSize: 80,
+                            fontSize: 60,
+                            
                             fontWeight: FontWeight.w600,
                             fontStyle: FontStyle.italic,
                             useGoogleFonts: false,
@@ -91,6 +95,8 @@ class _CompanySearchWidgetState extends State<CompanySearchWidget> {
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
                       child: TextFormField(
+                        focusNode: _focusNode,
+                        key: _globalKey,
                         controller: textController,
                         onChanged: (_) => EasyDebounce.debounce(
                           'textController',
@@ -180,17 +186,17 @@ class _CompanySearchWidgetState extends State<CompanySearchWidget> {
                           decoration: BoxDecoration(
                             color: Color(0x00FFFFFF),
                           ),
-                          child: Column(
+                          child: Builder(
+                                  builder: (context) {
+                                    final companies =
+                                        simpleSearchResults.toList();
+                                    return Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                                child: Builder(
-                                  builder: (context) {
-                                    final companies =
-                                        simpleSearchResults.toList();
-                                    return ListView.builder(
+                                child:  ListView.builder(
                                       padding: EdgeInsets.zero,
                                       shrinkWrap: true,
                                       scrollDirection: Axis.vertical,
@@ -226,24 +232,43 @@ class _CompanySearchWidgetState extends State<CompanySearchWidget> {
                                             },
                                             child: CompanySearchCardWidget(
                                               company: companiesItem,
-                                              onSelect: () async {},
+                                              onSelect: () async => context.pushNamed(
+                                                'CompanyReview',
+                                                queryParams: {
+                                                  'company': serializeParam(
+                                                    companiesItem,
+                                                    ParamType.Document,
+                                                  ),
+                                                }.withoutNulls,
+                                                extra: <String, dynamic>{
+                                                  'company': companiesItem,
+                                                  kTransitionInfoKey:
+                                                      TransitionInfo(
+                                                    hasTransition: true,
+                                                    transitionType:
+                                                        PageTransitionType
+                                                            .rightToLeft,
+                                                    duration: Duration(
+                                                        milliseconds: 400),
+                                                  ),
+                                                },
+                                              ),
                                             ),
                                           ),
                                         );
-                                      },
-                                    );
+                                      
                                   },
                                 ),
                               ),
-                              Divider(
+                              Visibility(visible: companies.length > 0, child: Divider(
                                 thickness: 2,
                                 color: Color(0xFF58197E),
-                              ),
+                              ),),
                               Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
-                                child: FFButtonWidget(
-                                  onPressed: () async {
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                                child: GestureDetector(
+                                  onTap: () async {
                                     context.pushNamed(
                                       'NewCompanyReview',
                                       extra: <String, dynamic>{
@@ -256,32 +281,26 @@ class _CompanySearchWidgetState extends State<CompanySearchWidget> {
                                       },
                                     );
                                   },
-                                  text: 'Add a New Company',
-                                  options: FFButtonOptions(
-                                    width: double.infinity,
-                                    color: Color(0x004B39EF),
-                                    textStyle: FlutterFlowTheme.of(context)
+                                  child: Text('Add a New Company', style: FlutterFlowTheme.of(context)
                                         .subtitle2
                                         .override(
                                           fontFamily: 'Poppins',
                                           color: Color(0xFF58197E),
                                           fontSize: 14,
                                           fontWeight: FontWeight.w500,
-                                        ),
-                                    borderSide: BorderSide(
-                                      color: Colors.transparent,
-                                      width: 0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
+                                        ),),
+                                 
+                                    
+                                   
                                   ),
                                 ),
-                              ),
                             ],
-                          ),
+                          );},
+                          
                         ),
                       ),
                     ),
-                  ),
+                    ),  ),
               ],
             ),
           ),

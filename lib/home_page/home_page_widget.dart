@@ -19,8 +19,9 @@ class HomePageWidget extends StatefulWidget {
 }
 
 class _HomePageWidgetState extends State<HomePageWidget> {
-  final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final _unfocusNode = FocusNode();
 
   @override
   void dispose() {
@@ -35,7 +36,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      body: GestureDetector(
+      body: SingleChildScrollView(
+        physics: NeverScrollableScrollPhysics(),
+        child: SizedBox(height: MediaQuery.of(context).size.height,  child: GestureDetector(
         onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
         child: Container(
           width: double.infinity,
@@ -79,7 +82,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       fontWeight: FontWeight.w600,
                                       fontStyle: FontStyle.italic,
                                       useGoogleFonts: false,
-                                      lineHeight: 0.842,
+                                      lineHeight: 1,
                                     ),
                             colors: [
                               Color(0xFFEFDDFC),
@@ -138,7 +141,27 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       ),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                        child: FFButtonWidget(
+                        child: SizedBox(
+                          width: 224, height: 50,
+                          child: OutlinedButton(
+                            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xFFEFDDFC)),
+                            textStyle: MaterialStateProperty.all(FlutterFlowTheme.of(context).subtitle2.override(
+                                      fontFamily: 'Avenir Reg',
+                                      color: Color(0xFF58197E),
+                                      fontSize: 15,
+                                      useGoogleFonts: false,),
+                                    ),
+                                    foregroundColor: MaterialStateProperty.all(Color(0xFF58197E),),
+                                    shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                    overlayColor: MaterialStateProperty.all(Colors.transparent),
+                                   side: MaterialStateProperty.all(BorderSide(color: Colors.transparent, width: 0)),
+                            shape: MaterialStateProperty.all(RoundedRectangleBorder(   side: BorderSide(color: Colors.transparent, width: 0), borderRadius: BorderRadius.circular(18)),
+                            ),
+
+                                    
+                           
+                           ),
+
                           onPressed: () async {
                             context.pushNamed(
                               'company_search',
@@ -152,34 +175,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               },
                             );
                           },
-                          text: 'Get Started',
-                          options: FFButtonOptions(
-                            width: 224,
-                            height: 50,
-                            color: Color(0xFFEFDDFC),
-                            textStyle:
-                                FlutterFlowTheme.of(context).subtitle2.override(
-                                      fontFamily: 'Avenir Reg',
-                                      color: Color(0xFF58197E),
-                                      fontSize: 15,
-                                      useGoogleFonts: false,
-                                    ),
-                            borderSide: BorderSide(
-                              color: Colors.transparent,
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(18),
-                          ),
+                          child: Text('Get Started'),
+
                         ),
                       ),
-                    ),
+                    ),),
                   ),
                 ],
               ),
             ],
           ),
-        ),
-      ),
+        ),),
+      ),),
     );
   }
 }

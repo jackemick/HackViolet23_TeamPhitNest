@@ -5,7 +5,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 class FFButtonOptions {
   const FFButtonOptions({
     this.textStyle,
-    this.elevation,
     this.height,
     this.width,
     this.padding,
@@ -21,11 +20,9 @@ class FFButtonOptions {
     this.hoverColor,
     this.hoverBorderSide,
     this.hoverTextColor,
-    this.hoverElevation,
   });
 
   final TextStyle? textStyle;
-  final double? elevation;
   final double? height;
   final double? width;
   final EdgeInsetsGeometry? padding;
@@ -41,7 +38,6 @@ class FFButtonOptions {
   final Color? hoverColor;
   final BorderSide? hoverBorderSide;
   final Color? hoverTextColor;
-  final double? hoverElevation;
 }
 
 class FFButtonWidget extends StatefulWidget {
@@ -158,15 +154,6 @@ class _FFButtonWidgetState extends State<FFButtonWidget> {
       }),
       padding: MaterialStateProperty.all(widget.options.padding ??
           const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0)),
-      elevation: MaterialStateProperty.resolveWith<double>(
-        (states) {
-          if (states.contains(MaterialState.hovered) &&
-              widget.options.hoverElevation != null) {
-            return widget.options.hoverElevation!;
-          }
-          return widget.options.elevation ?? 2.0;
-        },
-      ),
     );
 
     if (widget.icon != null || widget.iconData != null) {
