@@ -13,8 +13,6 @@ abstract class PeoplePostsRecord
 
   String? get text;
 
-  DateTime? get date;
-
   DocumentReference? get personId;
 
   bool? get aggressive;
@@ -31,6 +29,8 @@ abstract class PeoplePostsRecord
 
   DateTime? get datePosted;
 
+  String? get date;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -42,7 +42,8 @@ abstract class PeoplePostsRecord
     ..approachable = false
     ..witnessedHarassing = false
     ..facedHarassment = false
-    ..position = '';
+    ..position = ''
+    ..date = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('people_posts');
@@ -67,7 +68,6 @@ abstract class PeoplePostsRecord
 
 Map<String, dynamic> createPeoplePostsRecordData({
   String? text,
-  DateTime? date,
   DocumentReference? personId,
   bool? aggressive,
   bool? reflects,
@@ -76,13 +76,13 @@ Map<String, dynamic> createPeoplePostsRecordData({
   bool? facedHarassment,
   String? position,
   DateTime? datePosted,
+  String? date,
 }) {
   final firestoreData = serializers.toFirestore(
     PeoplePostsRecord.serializer,
     PeoplePostsRecord(
       (p) => p
         ..text = text
-        ..date = date
         ..personId = personId
         ..aggressive = aggressive
         ..reflects = reflects
@@ -90,7 +90,8 @@ Map<String, dynamic> createPeoplePostsRecordData({
         ..witnessedHarassing = witnessedHarassing
         ..facedHarassment = facedHarassment
         ..position = position
-        ..datePosted = datePosted,
+        ..datePosted = datePosted
+        ..date = date,
     ),
   );
 

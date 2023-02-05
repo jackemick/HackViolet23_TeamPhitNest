@@ -19,3 +19,6 @@ export 'report_suck/report_suck_widget.dart' show ReportSuckWidget;
 export 'report_form/report_form_widget.dart' show ReportFormWidget;
 export 'open_company_review/open_company_review_widget.dart'
     show OpenCompanyReviewWidget;
+export 'ext_emp_review1/ext_emp_review1_widget.dart' show ExtEmpReview1Widget;
+export 'ext_company_review/ext_company_review_widget.dart'
+    show ExtCompanyReviewWidget;

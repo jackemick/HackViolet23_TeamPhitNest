@@ -28,13 +28,6 @@ class _$PeoplePostsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.date;
-    if (value != null) {
-      result
-        ..add('date')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(DateTime)));
-    }
     value = object.personId;
     if (value != null) {
       result
@@ -92,6 +85,13 @@ class _$PeoplePostsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
     }
+    value = object.date;
+    if (value != null) {
+      result
+        ..add('date')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -118,10 +118,6 @@ class _$PeoplePostsRecordSerializer
         case 'text':
           result.text = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
-          break;
-        case 'date':
-          result.date = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime?;
           break;
         case 'personId':
           result.personId = serializers.deserialize(value,
@@ -157,6 +153,10 @@ class _$PeoplePostsRecordSerializer
           result.datePosted = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime?;
           break;
+        case 'date':
+          result.date = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -174,8 +174,6 @@ class _$PeoplePostsRecord extends PeoplePostsRecord {
   @override
   final String? text;
   @override
-  final DateTime? date;
-  @override
   final DocumentReference<Object?>? personId;
   @override
   final bool? aggressive;
@@ -192,6 +190,8 @@ class _$PeoplePostsRecord extends PeoplePostsRecord {
   @override
   final DateTime? datePosted;
   @override
+  final String? date;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$PeoplePostsRecord(
@@ -200,7 +200,6 @@ class _$PeoplePostsRecord extends PeoplePostsRecord {
 
   _$PeoplePostsRecord._(
       {this.text,
-      this.date,
       this.personId,
       this.aggressive,
       this.reflects,
@@ -209,6 +208,7 @@ class _$PeoplePostsRecord extends PeoplePostsRecord {
       this.facedHarassment,
       this.position,
       this.datePosted,
+      this.date,
       this.ffRef})
       : super._();
 
@@ -225,7 +225,6 @@ class _$PeoplePostsRecord extends PeoplePostsRecord {
     if (identical(other, this)) return true;
     return other is PeoplePostsRecord &&
         text == other.text &&
-        date == other.date &&
         personId == other.personId &&
         aggressive == other.aggressive &&
         reflects == other.reflects &&
@@ -234,6 +233,7 @@ class _$PeoplePostsRecord extends PeoplePostsRecord {
         facedHarassment == other.facedHarassment &&
         position == other.position &&
         datePosted == other.datePosted &&
+        date == other.date &&
         ffRef == other.ffRef;
   }
 
@@ -249,15 +249,15 @@ class _$PeoplePostsRecord extends PeoplePostsRecord {
                                 $jc(
                                     $jc(
                                         $jc($jc(0, text.hashCode),
-                                            date.hashCode),
-                                        personId.hashCode),
-                                    aggressive.hashCode),
-                                reflects.hashCode),
-                            approachable.hashCode),
-                        witnessedHarassing.hashCode),
-                    facedHarassment.hashCode),
-                position.hashCode),
-            datePosted.hashCode),
+                                            personId.hashCode),
+                                        aggressive.hashCode),
+                                    reflects.hashCode),
+                                approachable.hashCode),
+                            witnessedHarassing.hashCode),
+                        facedHarassment.hashCode),
+                    position.hashCode),
+                datePosted.hashCode),
+            date.hashCode),
         ffRef.hashCode));
   }
 
@@ -265,7 +265,6 @@ class _$PeoplePostsRecord extends PeoplePostsRecord {
   String toString() {
     return (newBuiltValueToStringHelper(r'PeoplePostsRecord')
           ..add('text', text)
-          ..add('date', date)
           ..add('personId', personId)
           ..add('aggressive', aggressive)
           ..add('reflects', reflects)
@@ -274,6 +273,7 @@ class _$PeoplePostsRecord extends PeoplePostsRecord {
           ..add('facedHarassment', facedHarassment)
           ..add('position', position)
           ..add('datePosted', datePosted)
+          ..add('date', date)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -286,10 +286,6 @@ class PeoplePostsRecordBuilder
   String? _text;
   String? get text => _$this._text;
   set text(String? text) => _$this._text = text;
-
-  DateTime? _date;
-  DateTime? get date => _$this._date;
-  set date(DateTime? date) => _$this._date = date;
 
   DocumentReference<Object?>? _personId;
   DocumentReference<Object?>? get personId => _$this._personId;
@@ -326,6 +322,10 @@ class PeoplePostsRecordBuilder
   DateTime? get datePosted => _$this._datePosted;
   set datePosted(DateTime? datePosted) => _$this._datePosted = datePosted;
 
+  String? _date;
+  String? get date => _$this._date;
+  set date(String? date) => _$this._date = date;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -338,7 +338,6 @@ class PeoplePostsRecordBuilder
     final $v = _$v;
     if ($v != null) {
       _text = $v.text;
-      _date = $v.date;
       _personId = $v.personId;
       _aggressive = $v.aggressive;
       _reflects = $v.reflects;
@@ -347,6 +346,7 @@ class PeoplePostsRecordBuilder
       _facedHarassment = $v.facedHarassment;
       _position = $v.position;
       _datePosted = $v.datePosted;
+      _date = $v.date;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -371,7 +371,6 @@ class PeoplePostsRecordBuilder
     final _$result = _$v ??
         new _$PeoplePostsRecord._(
             text: text,
-            date: date,
             personId: personId,
             aggressive: aggressive,
             reflects: reflects,
@@ -380,6 +379,7 @@ class PeoplePostsRecordBuilder
             facedHarassment: facedHarassment,
             position: position,
             datePosted: datePosted,
+            date: date,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

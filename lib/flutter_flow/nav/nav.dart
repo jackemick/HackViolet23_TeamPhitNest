@@ -52,12 +52,27 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'new_emp_review2',
               path: 'newEmpReview2',
-              builder: (context, params) => NewEmpReview2Widget(),
+              asyncParams: {
+                'person': getDoc(['people'], PeopleRecord.serializer),
+              },
+              builder: (context, params) => NewEmpReview2Widget(
+                agg: params.getParam('agg', ParamType.bool),
+                reflect: params.getParam('reflect', ParamType.bool),
+                approach: params.getParam('approach', ParamType.bool),
+                witness: params.getParam('witness', ParamType.bool),
+                faced: params.getParam('faced', ParamType.bool),
+                person: params.getParam('person', ParamType.Document),
+              ),
             ),
             FFRoute(
               name: 'new_emp_review1',
               path: 'newEmpReview1',
-              builder: (context, params) => NewEmpReview1Widget(),
+              asyncParams: {
+                'company': getDoc(['companies'], CompaniesRecord.serializer),
+              },
+              builder: (context, params) => NewEmpReview1Widget(
+                company: params.getParam('company', ParamType.Document),
+              ),
             ),
             FFRoute(
               name: 'review_suck',
@@ -112,7 +127,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'new_company_review2',
               path: 'newCompanyReview2',
-              builder: (context, params) => NewCompanyReview2Widget(),
+              asyncParams: {
+                'company': getDoc(['companies'], CompaniesRecord.serializer),
+              },
+              builder: (context, params) => NewCompanyReview2Widget(
+                maleDominated: params.getParam('maleDominated', ParamType.bool),
+                lgbtqFriendly: params.getParam('lgbtqFriendly', ParamType.bool),
+                safeEnvironment:
+                    params.getParam('safeEnvironment', ParamType.bool),
+                witnessHarassment:
+                    params.getParam('witnessHarassment', ParamType.bool),
+                facedHarassment:
+                    params.getParam('facedHarassment', ParamType.bool),
+                company: params.getParam('company', ParamType.Document),
+                date: params.getParam('date', ParamType.String),
+              ),
             ),
             FFRoute(
               name: 'report_suck',
@@ -128,6 +157,26 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'OpenCompanyReview',
               path: 'openCompanyReview',
               builder: (context, params) => OpenCompanyReviewWidget(),
+            ),
+            FFRoute(
+              name: 'ext_emp_review1',
+              path: 'extEmpReview1',
+              asyncParams: {
+                'person': getDoc(['people'], PeopleRecord.serializer),
+              },
+              builder: (context, params) => ExtEmpReview1Widget(
+                person: params.getParam('person', ParamType.Document),
+              ),
+            ),
+            FFRoute(
+              name: 'ExtCompanyReview',
+              path: 'extCompanyReview',
+              asyncParams: {
+                'company': getDoc(['companies'], CompaniesRecord.serializer),
+              },
+              builder: (context, params) => ExtCompanyReviewWidget(
+                company: params.getParam('company', ParamType.Document),
+              ),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

@@ -37,13 +37,6 @@ class _$CompanyPostsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.date;
-    if (value != null) {
-      result
-        ..add('date')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(DateTime)));
-    }
     value = object.maleDominated;
     if (value != null) {
       result
@@ -79,6 +72,13 @@ class _$CompanyPostsRecordSerializer
         ..add(
             serializers.serialize(value, specifiedType: const FullType(bool)));
     }
+    value = object.date;
+    if (value != null) {
+      result
+        ..add('date')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -112,10 +112,6 @@ class _$CompanyPostsRecordSerializer
           result.text = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'date':
-          result.date = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime?;
-          break;
         case 'maleDominated':
           result.maleDominated = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool?;
@@ -136,6 +132,10 @@ class _$CompanyPostsRecordSerializer
           result.facedHarassment = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool?;
           break;
+        case 'date':
+          result.date = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -155,8 +155,6 @@ class _$CompanyPostsRecord extends CompanyPostsRecord {
   @override
   final String? text;
   @override
-  final DateTime? date;
-  @override
   final bool? maleDominated;
   @override
   final bool? lgbtqFriendly;
@@ -167,6 +165,8 @@ class _$CompanyPostsRecord extends CompanyPostsRecord {
   @override
   final bool? facedHarassment;
   @override
+  final String? date;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$CompanyPostsRecord(
@@ -176,12 +176,12 @@ class _$CompanyPostsRecord extends CompanyPostsRecord {
   _$CompanyPostsRecord._(
       {this.companyId,
       this.text,
-      this.date,
       this.maleDominated,
       this.lgbtqFriendly,
       this.safeEnvironment,
       this.witnessHarassment,
       this.facedHarassment,
+      this.date,
       this.ffRef})
       : super._();
 
@@ -200,12 +200,12 @@ class _$CompanyPostsRecord extends CompanyPostsRecord {
     return other is CompanyPostsRecord &&
         companyId == other.companyId &&
         text == other.text &&
-        date == other.date &&
         maleDominated == other.maleDominated &&
         lgbtqFriendly == other.lgbtqFriendly &&
         safeEnvironment == other.safeEnvironment &&
         witnessHarassment == other.witnessHarassment &&
         facedHarassment == other.facedHarassment &&
+        date == other.date &&
         ffRef == other.ffRef;
   }
 
@@ -218,12 +218,12 @@ class _$CompanyPostsRecord extends CompanyPostsRecord {
                     $jc(
                         $jc(
                             $jc($jc($jc(0, companyId.hashCode), text.hashCode),
-                                date.hashCode),
-                            maleDominated.hashCode),
-                        lgbtqFriendly.hashCode),
-                    safeEnvironment.hashCode),
-                witnessHarassment.hashCode),
-            facedHarassment.hashCode),
+                                maleDominated.hashCode),
+                            lgbtqFriendly.hashCode),
+                        safeEnvironment.hashCode),
+                    witnessHarassment.hashCode),
+                facedHarassment.hashCode),
+            date.hashCode),
         ffRef.hashCode));
   }
 
@@ -232,12 +232,12 @@ class _$CompanyPostsRecord extends CompanyPostsRecord {
     return (newBuiltValueToStringHelper(r'CompanyPostsRecord')
           ..add('companyId', companyId)
           ..add('text', text)
-          ..add('date', date)
           ..add('maleDominated', maleDominated)
           ..add('lgbtqFriendly', lgbtqFriendly)
           ..add('safeEnvironment', safeEnvironment)
           ..add('witnessHarassment', witnessHarassment)
           ..add('facedHarassment', facedHarassment)
+          ..add('date', date)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -255,10 +255,6 @@ class CompanyPostsRecordBuilder
   String? _text;
   String? get text => _$this._text;
   set text(String? text) => _$this._text = text;
-
-  DateTime? _date;
-  DateTime? get date => _$this._date;
-  set date(DateTime? date) => _$this._date = date;
 
   bool? _maleDominated;
   bool? get maleDominated => _$this._maleDominated;
@@ -285,6 +281,10 @@ class CompanyPostsRecordBuilder
   set facedHarassment(bool? facedHarassment) =>
       _$this._facedHarassment = facedHarassment;
 
+  String? _date;
+  String? get date => _$this._date;
+  set date(String? date) => _$this._date = date;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -298,12 +298,12 @@ class CompanyPostsRecordBuilder
     if ($v != null) {
       _companyId = $v.companyId;
       _text = $v.text;
-      _date = $v.date;
       _maleDominated = $v.maleDominated;
       _lgbtqFriendly = $v.lgbtqFriendly;
       _safeEnvironment = $v.safeEnvironment;
       _witnessHarassment = $v.witnessHarassment;
       _facedHarassment = $v.facedHarassment;
+      _date = $v.date;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -329,12 +329,12 @@ class CompanyPostsRecordBuilder
         new _$CompanyPostsRecord._(
             companyId: companyId,
             text: text,
-            date: date,
             maleDominated: maleDominated,
             lgbtqFriendly: lgbtqFriendly,
             safeEnvironment: safeEnvironment,
             witnessHarassment: witnessHarassment,
             facedHarassment: facedHarassment,
+            date: date,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

@@ -2,26 +2,24 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
-import 'package:simple_gradient_text/simple_gradient_text.dart';
 
-class NewCompanyReviewWidget extends StatefulWidget {
-  const NewCompanyReviewWidget({Key? key}) : super(key: key);
+class ExtCompanyReviewWidget extends StatefulWidget {
+  const ExtCompanyReviewWidget({
+    Key? key,
+    this.company,
+  }) : super(key: key);
+
+  final CompaniesRecord? company;
 
   @override
-  _NewCompanyReviewWidgetState createState() => _NewCompanyReviewWidgetState();
+  _ExtCompanyReviewWidgetState createState() => _ExtCompanyReviewWidgetState();
 }
 
-class _NewCompanyReviewWidgetState extends State<NewCompanyReviewWidget> {
-  CompaniesRecord? company;
-  TextEditingController? textController1;
-  TextEditingController? textController2;
-  TextEditingController? textController3;
-  final textFieldMask3 = MaskTextInputFormatter(mask: '##/####');
+class _ExtCompanyReviewWidgetState extends State<ExtCompanyReviewWidget> {
+  TextEditingController? textController;
   bool? switchValue1;
   bool? switchValue2;
   bool? switchValue3;
@@ -33,17 +31,13 @@ class _NewCompanyReviewWidgetState extends State<NewCompanyReviewWidget> {
   @override
   void initState() {
     super.initState();
-    textController1 = TextEditingController();
-    textController2 = TextEditingController();
-    textController3 = TextEditingController();
+    textController = TextEditingController();
   }
 
   @override
   void dispose() {
     _unfocusNode.dispose();
-    textController1?.dispose();
-    textController2?.dispose();
-    textController3?.dispose();
+    textController?.dispose();
     super.dispose();
   }
 
@@ -73,19 +67,17 @@ class _NewCompanyReviewWidgetState extends State<NewCompanyReviewWidget> {
                   decoration: BoxDecoration(
                     color: Color(0x00FFFFFF),
                   ),
-                  child: GradientText(
-                    'New\nReview\n',
+                  child: Text(
+                    widget.company!.name!,
                     style: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Avenir Reg',
-                          fontSize: 80,
+                          color: Colors.white,
+                          fontSize: 40,
                           fontWeight: FontWeight.w600,
                           fontStyle: FontStyle.italic,
                           useGoogleFonts: false,
                           lineHeight: 0.842,
                         ),
-                    colors: [Color(0xFFEFDDFC), Color(0xFFFBFBFB)],
-                    gradientDirection: GradientDirection.btt,
-                    gradientType: GradientType.linear,
                   ),
                 ),
               ),
@@ -114,11 +106,11 @@ class _NewCompanyReviewWidgetState extends State<NewCompanyReviewWidget> {
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
                             child: TextFormField(
-                              controller: textController1,
+                              controller: textController,
                               autofocus: true,
                               obscureText: false,
                               decoration: InputDecoration(
-                                hintText: 'Company Name',
+                                hintText: 'Date (optional)',
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .bodyText2
                                     .override(
@@ -181,222 +173,61 @@ class _NewCompanyReviewWidgetState extends State<NewCompanyReviewWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
-                      child: Container(
-                        width: 354,
-                        height: 48,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFEFDDFC),
-                          borderRadius: BorderRadius.circular(18),
-                        ),
-                        child: Align(
-                          alignment: AlignmentDirectional(0, 0),
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
-                            child: TextFormField(
-                              controller: textController2,
-                              autofocus: true,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                hintText: 'City',
-                                hintStyle: FlutterFlowTheme.of(context)
-                                    .bodyText2
-                                    .override(
-                                      fontFamily: 'Avenir Reg',
-                                      color: Color(0x7E58197E),
-                                      useGoogleFonts: false,
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(18, 0, 0, 15),
+                              child: Container(
+                                width: 354,
+                                height: 48,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFEFDDFC),
+                                  borderRadius: BorderRadius.circular(18),
+                                ),
+                                child: Align(
+                                  alignment: AlignmentDirectional(-1, 0),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        22, 0, 0, 0),
+                                    child: Text(
+                                      'Male Dominated',
+                                      textAlign: TextAlign.start,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Avenir Reg',
+                                            color: Color(0xFF58197E),
+                                            fontSize: 15,
+                                            useGoogleFonts: false,
+                                          ),
                                     ),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 1,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
-                                  ),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 1,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
-                                  ),
-                                ),
-                                errorBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 1,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
-                                  ),
-                                ),
-                                focusedErrorBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 1,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
                                   ),
                                 ),
                               ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Avenir Reg',
-                                    color: Color(0xFF58197E),
-                                    fontSize: 15,
-                                    useGoogleFonts: false,
-                                  ),
                             ),
                           ),
-                        ),
+                          Align(
+                            alignment: AlignmentDirectional(0, 0),
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 18, 16),
+                              child: Switch(
+                                value: switchValue1 ??= false,
+                                onChanged: (newValue) async {
+                                  setState(() => switchValue1 = newValue!);
+                                },
+                                activeColor:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                                activeTrackColor: Color(0xFFE2B9FF),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 15),
-                      child: Container(
-                        width: 354,
-                        height: 48,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFEFDDFC),
-                          borderRadius: BorderRadius.circular(18),
-                        ),
-                        child: Align(
-                          alignment: AlignmentDirectional(0, 0),
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
-                            child: TextFormField(
-                              controller: textController3,
-                              autofocus: true,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                hintText: 'Date of Occurence',
-                                hintStyle: FlutterFlowTheme.of(context)
-                                    .bodyText2
-                                    .override(
-                                      fontFamily: 'Avenir Reg',
-                                      color: Color(0x7E58197E),
-                                      useGoogleFonts: false,
-                                    ),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 1,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
-                                  ),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 1,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
-                                  ),
-                                ),
-                                errorBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 1,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
-                                  ),
-                                ),
-                                focusedErrorBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 1,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
-                                  ),
-                                ),
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Avenir Reg',
-                                    color: Color(0xFF58197E),
-                                    fontSize: 15,
-                                    useGoogleFonts: false,
-                                  ),
-                              keyboardType: TextInputType.datetime,
-                              inputFormatters: [textFieldMask3],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(18, 0, 0, 15),
-                            child: Container(
-                              width: 354,
-                              height: 48,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFEFDDFC),
-                                borderRadius: BorderRadius.circular(18),
-                              ),
-                              child: Align(
-                                alignment: AlignmentDirectional(-1, 0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      22, 0, 0, 0),
-                                  child: Text(
-                                    'Male Dominated',
-                                    textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Avenir Reg',
-                                          color: Color(0xFF58197E),
-                                          fontSize: 15,
-                                          useGoogleFonts: false,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Align(
-                          alignment: AlignmentDirectional(0, 0),
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 18, 16),
-                            child: Switch(
-                              value: switchValue1 ??= false,
-                              onChanged: (newValue) async {
-                                setState(() => switchValue1 = newValue!);
-                              },
-                              activeColor:
-                                  FlutterFlowTheme.of(context).primaryBtnText,
-                              activeTrackColor: Color(0xFFE2B9FF),
-                            ),
-                          ),
-                        ),
-                      ],
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
@@ -615,7 +446,7 @@ class _NewCompanyReviewWidgetState extends State<NewCompanyReviewWidget> {
                       ],
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(50, 12, 50, 24),
+                      padding: EdgeInsetsDirectional.fromSTEB(50, 12, 50, 8),
                       child: Container(
                         width: 232,
                         height: 58,
@@ -635,19 +466,6 @@ class _NewCompanyReviewWidgetState extends State<NewCompanyReviewWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              final companiesCreateData =
-                                  createCompaniesRecordData(
-                                name: textController1!.text,
-                                city: textController2!.text,
-                              );
-                              var companiesRecordReference =
-                                  CompaniesRecord.collection.doc();
-                              await companiesRecordReference
-                                  .set(companiesCreateData);
-                              company = CompaniesRecord.getDocumentFromData(
-                                  companiesCreateData,
-                                  companiesRecordReference);
-
                               context.pushNamed(
                                 'new_company_review2',
                                 queryParams: {
@@ -672,20 +490,24 @@ class _NewCompanyReviewWidgetState extends State<NewCompanyReviewWidget> {
                                     ParamType.bool,
                                   ),
                                   'company': serializeParam(
-                                    company,
+                                    widget.company,
                                     ParamType.Document,
                                   ),
                                   'date': serializeParam(
-                                    textController3!.text,
+                                    '',
                                     ParamType.String,
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  'company': company,
+                                  'company': widget.company,
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType:
+                                        PageTransitionType.rightToLeft,
+                                    duration: Duration(milliseconds: 400),
+                                  ),
                                 },
                               );
-
-                              setState(() {});
                             },
                             text: 'Continue',
                             options: FFButtonOptions(

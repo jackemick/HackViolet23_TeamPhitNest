@@ -218,6 +218,8 @@ class _CompanySearchWidgetState extends State<CompanySearchWidget> {
                                                     transitionType:
                                                         PageTransitionType
                                                             .rightToLeft,
+                                                    duration: Duration(
+                                                        milliseconds: 400),
                                                   ),
                                                 },
                                               );
