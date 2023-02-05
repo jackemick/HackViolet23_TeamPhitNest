@@ -23,7 +23,6 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   CompanyPostsRecord,
   PeoplePostRepliesRecord,
   CompanyPostRepliesRecord,
-  AddressStruct,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

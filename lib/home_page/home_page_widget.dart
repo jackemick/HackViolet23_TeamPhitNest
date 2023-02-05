@@ -3,6 +3,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class HomePageWidget extends StatefulWidget {
@@ -29,6 +30,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -106,8 +109,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
                     child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        context.pushNamed(
+                          'company_search',
+                          extra: <String, dynamic>{
+                            kTransitionInfoKey: TransitionInfo(
+                              hasTransition: true,
+                              transitionType: PageTransitionType.rightToLeft,
+                              duration: Duration(milliseconds: 400),
+                            ),
+                          },
+                        );
                       },
                       text: '',
                       options: FFButtonOptions(
@@ -116,12 +128,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         color: Color(0xFFEFDDFC),
                         textStyle:
                             FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Poppins',
+                                  fontFamily: 'Avenir',
                                   color: Colors.white,
+                                  useGoogleFonts: false,
                                 ),
+                        elevation: 0,
                         borderSide: BorderSide(
                           color: Colors.transparent,
-                          width: 1,
+                          width: 0,
                         ),
                         borderRadius: BorderRadius.circular(18),
                       ),

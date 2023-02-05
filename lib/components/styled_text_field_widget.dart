@@ -1,16 +1,20 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class StyledTextFieldWidget extends StatefulWidget {
   const StyledTextFieldWidget({
     Key? key,
     this.hintText,
+    this.onChanged,
   }) : super(key: key);
 
   final String? hintText;
+  final Future<dynamic> Function()? onChanged;
 
   @override
   _StyledTextFieldWidgetState createState() => _StyledTextFieldWidgetState();
@@ -33,6 +37,8 @@ class _StyledTextFieldWidgetState extends State<StyledTextFieldWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -48,17 +54,21 @@ class _StyledTextFieldWidgetState extends State<StyledTextFieldWidget> {
         padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
         child: TextFormField(
           controller: textController,
-          autofocus: true,
+          onChanged: (_) => EasyDebounce.debounce(
+            'textController',
+            Duration(milliseconds: 200),
+            () async {
+              FFAppState().update(() {
+                FFAppState().companySearch = textController!.text;
+              });
+              await widget.onChanged?.call();
+            },
+          ),
           textCapitalization: TextCapitalization.words,
           obscureText: false,
           decoration: InputDecoration(
+            isDense: true,
             hintText: widget.hintText,
-            hintStyle: FlutterFlowTheme.of(context).bodyText2.override(
-                  fontFamily: 'Adamina',
-                  color: FlutterFlowTheme.of(context).secondaryText,
-                  fontSize: 18,
-                  fontWeight: FontWeight.normal,
-                ),
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
                 color: Color(0x00000000),
@@ -91,13 +101,17 @@ class _StyledTextFieldWidgetState extends State<StyledTextFieldWidget> {
             fillColor: Color(0xFFEFDDFC),
             prefixIcon: Icon(
               Icons.search,
+              color: Colors.white,
+              size: 24,
             ),
           ),
           style: FlutterFlowTheme.of(context).bodyText1.override(
-                fontFamily: 'Adamina',
-                color: FlutterFlowTheme.of(context).secondaryText,
-                fontSize: 18,
-                fontWeight: FontWeight.normal,
+                fontFamily: 'Avenir',
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.w300,
+                fontStyle: FontStyle.italic,
+                useGoogleFonts: false,
               ),
           keyboardType: TextInputType.name,
           inputFormatters: [

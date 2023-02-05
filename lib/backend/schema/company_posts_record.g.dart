@@ -44,6 +44,14 @@ class _$CompanyPostsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
     }
+    value = object.tags;
+    if (value != null) {
+      result
+        ..add('tags')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -81,6 +89,12 @@ class _$CompanyPostsRecordSerializer
           result.date = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime?;
           break;
+        case 'tags':
+          result.tags.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -102,13 +116,16 @@ class _$CompanyPostsRecord extends CompanyPostsRecord {
   @override
   final DateTime? date;
   @override
+  final BuiltList<String>? tags;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$CompanyPostsRecord(
           [void Function(CompanyPostsRecordBuilder)? updates]) =>
       (new CompanyPostsRecordBuilder()..update(updates))._build();
 
-  _$CompanyPostsRecord._({this.companyId, this.text, this.date, this.ffRef})
+  _$CompanyPostsRecord._(
+      {this.companyId, this.text, this.date, this.tags, this.ffRef})
       : super._();
 
   @override
@@ -127,13 +144,15 @@ class _$CompanyPostsRecord extends CompanyPostsRecord {
         companyId == other.companyId &&
         text == other.text &&
         date == other.date &&
+        tags == other.tags &&
         ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, companyId.hashCode), text.hashCode), date.hashCode),
+        $jc($jc($jc($jc(0, companyId.hashCode), text.hashCode), date.hashCode),
+            tags.hashCode),
         ffRef.hashCode));
   }
 
@@ -143,6 +162,7 @@ class _$CompanyPostsRecord extends CompanyPostsRecord {
           ..add('companyId', companyId)
           ..add('text', text)
           ..add('date', date)
+          ..add('tags', tags)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -165,6 +185,10 @@ class CompanyPostsRecordBuilder
   DateTime? get date => _$this._date;
   set date(DateTime? date) => _$this._date = date;
 
+  ListBuilder<String>? _tags;
+  ListBuilder<String> get tags => _$this._tags ??= new ListBuilder<String>();
+  set tags(ListBuilder<String>? tags) => _$this._tags = tags;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -179,6 +203,7 @@ class CompanyPostsRecordBuilder
       _companyId = $v.companyId;
       _text = $v.text;
       _date = $v.date;
+      _tags = $v.tags?.toBuilder();
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -200,9 +225,26 @@ class CompanyPostsRecordBuilder
   CompanyPostsRecord build() => _build();
 
   _$CompanyPostsRecord _build() {
-    final _$result = _$v ??
-        new _$CompanyPostsRecord._(
-            companyId: companyId, text: text, date: date, ffRef: ffRef);
+    _$CompanyPostsRecord _$result;
+    try {
+      _$result = _$v ??
+          new _$CompanyPostsRecord._(
+              companyId: companyId,
+              text: text,
+              date: date,
+              tags: _tags?.build(),
+              ffRef: ffRef);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'tags';
+        _tags?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'CompanyPostsRecord', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

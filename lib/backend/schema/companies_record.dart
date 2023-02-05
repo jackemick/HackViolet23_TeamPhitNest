@@ -13,7 +13,7 @@ abstract class CompaniesRecord
 
   String? get name;
 
-  AddressStruct get address;
+  String? get city;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
@@ -21,7 +21,7 @@ abstract class CompaniesRecord
 
   static void _initializeBuilder(CompaniesRecordBuilder builder) => builder
     ..name = ''
-    ..address = AddressStructBuilder();
+    ..city = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('companies');
@@ -46,19 +46,16 @@ abstract class CompaniesRecord
 
 Map<String, dynamic> createCompaniesRecordData({
   String? name,
-  AddressStruct? address,
+  String? city,
 }) {
   final firestoreData = serializers.toFirestore(
     CompaniesRecord.serializer,
     CompaniesRecord(
       (c) => c
         ..name = name
-        ..address = AddressStructBuilder(),
+        ..city = city,
     ),
   );
-
-  // Handle nested data for "address" field.
-  addAddressStructData(firestoreData, address, 'address');
 
   return firestoreData;
 }

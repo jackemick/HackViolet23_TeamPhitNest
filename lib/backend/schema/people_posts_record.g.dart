@@ -43,6 +43,14 @@ class _$PeoplePostsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
     }
+    value = object.tags;
+    if (value != null) {
+      result
+        ..add('tags')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -80,6 +88,12 @@ class _$PeoplePostsRecordSerializer
           result.date = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime?;
           break;
+        case 'tags':
+          result.tags.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -101,13 +115,16 @@ class _$PeoplePostsRecord extends PeoplePostsRecord {
   @override
   final DateTime? date;
   @override
+  final BuiltList<String>? tags;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$PeoplePostsRecord(
           [void Function(PeoplePostsRecordBuilder)? updates]) =>
       (new PeoplePostsRecordBuilder()..update(updates))._build();
 
-  _$PeoplePostsRecord._({this.personId, this.text, this.date, this.ffRef})
+  _$PeoplePostsRecord._(
+      {this.personId, this.text, this.date, this.tags, this.ffRef})
       : super._();
 
   @override
@@ -125,13 +142,15 @@ class _$PeoplePostsRecord extends PeoplePostsRecord {
         personId == other.personId &&
         text == other.text &&
         date == other.date &&
+        tags == other.tags &&
         ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, personId.hashCode), text.hashCode), date.hashCode),
+        $jc($jc($jc($jc(0, personId.hashCode), text.hashCode), date.hashCode),
+            tags.hashCode),
         ffRef.hashCode));
   }
 
@@ -141,6 +160,7 @@ class _$PeoplePostsRecord extends PeoplePostsRecord {
           ..add('personId', personId)
           ..add('text', text)
           ..add('date', date)
+          ..add('tags', tags)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -163,6 +183,10 @@ class PeoplePostsRecordBuilder
   DateTime? get date => _$this._date;
   set date(DateTime? date) => _$this._date = date;
 
+  ListBuilder<String>? _tags;
+  ListBuilder<String> get tags => _$this._tags ??= new ListBuilder<String>();
+  set tags(ListBuilder<String>? tags) => _$this._tags = tags;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -177,6 +201,7 @@ class PeoplePostsRecordBuilder
       _personId = $v.personId;
       _text = $v.text;
       _date = $v.date;
+      _tags = $v.tags?.toBuilder();
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -198,9 +223,26 @@ class PeoplePostsRecordBuilder
   PeoplePostsRecord build() => _build();
 
   _$PeoplePostsRecord _build() {
-    final _$result = _$v ??
-        new _$PeoplePostsRecord._(
-            personId: personId, text: text, date: date, ffRef: ffRef);
+    _$PeoplePostsRecord _$result;
+    try {
+      _$result = _$v ??
+          new _$PeoplePostsRecord._(
+              personId: personId,
+              text: text,
+              date: date,
+              tags: _tags?.build(),
+              ffRef: ffRef);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'tags';
+        _tags?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'PeoplePostsRecord', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

@@ -19,16 +19,19 @@ class _$CompaniesRecordSerializer
   @override
   Iterable<Object?> serialize(Serializers serializers, CompaniesRecord object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'address',
-      serializers.serialize(object.address,
-          specifiedType: const FullType(AddressStruct)),
-    ];
+    final result = <Object?>[];
     Object? value;
     value = object.name;
     if (value != null) {
       result
         ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.city;
+    if (value != null) {
+      result
+        ..add('city')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -59,9 +62,9 @@ class _$CompaniesRecordSerializer
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'address':
-          result.address.replace(serializers.deserialize(value,
-              specifiedType: const FullType(AddressStruct))! as AddressStruct);
+        case 'city':
+          result.city = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
@@ -80,18 +83,14 @@ class _$CompaniesRecord extends CompaniesRecord {
   @override
   final String? name;
   @override
-  final AddressStruct address;
+  final String? city;
   @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$CompaniesRecord([void Function(CompaniesRecordBuilder)? updates]) =>
       (new CompaniesRecordBuilder()..update(updates))._build();
 
-  _$CompaniesRecord._({this.name, required this.address, this.ffRef})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        address, r'CompaniesRecord', 'address');
-  }
+  _$CompaniesRecord._({this.name, this.city, this.ffRef}) : super._();
 
   @override
   CompaniesRecord rebuild(void Function(CompaniesRecordBuilder) updates) =>
@@ -106,21 +105,20 @@ class _$CompaniesRecord extends CompaniesRecord {
     if (identical(other, this)) return true;
     return other is CompaniesRecord &&
         name == other.name &&
-        address == other.address &&
+        city == other.city &&
         ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, name.hashCode), address.hashCode), ffRef.hashCode));
+    return $jf($jc($jc($jc(0, name.hashCode), city.hashCode), ffRef.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'CompaniesRecord')
           ..add('name', name)
-          ..add('address', address)
+          ..add('city', city)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -134,10 +132,9 @@ class CompaniesRecordBuilder
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
-  AddressStructBuilder? _address;
-  AddressStructBuilder get address =>
-      _$this._address ??= new AddressStructBuilder();
-  set address(AddressStructBuilder? address) => _$this._address = address;
+  String? _city;
+  String? get city => _$this._city;
+  set city(String? city) => _$this._city = city;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -151,7 +148,7 @@ class CompaniesRecordBuilder
     final $v = _$v;
     if ($v != null) {
       _name = $v.name;
-      _address = $v.address.toBuilder();
+      _city = $v.city;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -173,22 +170,8 @@ class CompaniesRecordBuilder
   CompaniesRecord build() => _build();
 
   _$CompaniesRecord _build() {
-    _$CompaniesRecord _$result;
-    try {
-      _$result = _$v ??
-          new _$CompaniesRecord._(
-              name: name, address: address.build(), ffRef: ffRef);
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'address';
-        address.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'CompaniesRecord', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result =
+        _$v ?? new _$CompaniesRecord._(name: name, city: city, ffRef: ffRef);
     replace(_$result);
     return _$result;
   }
