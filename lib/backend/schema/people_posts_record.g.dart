@@ -85,6 +85,13 @@ class _$PeoplePostsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.datePosted;
+    if (value != null) {
+      result
+        ..add('datePosted')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -146,6 +153,10 @@ class _$PeoplePostsRecordSerializer
           result.position = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'datePosted':
+          result.datePosted = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -179,6 +190,8 @@ class _$PeoplePostsRecord extends PeoplePostsRecord {
   @override
   final String? position;
   @override
+  final DateTime? datePosted;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$PeoplePostsRecord(
@@ -195,6 +208,7 @@ class _$PeoplePostsRecord extends PeoplePostsRecord {
       this.witnessedHarassing,
       this.facedHarassment,
       this.position,
+      this.datePosted,
       this.ffRef})
       : super._();
 
@@ -219,6 +233,7 @@ class _$PeoplePostsRecord extends PeoplePostsRecord {
         witnessedHarassing == other.witnessedHarassing &&
         facedHarassment == other.facedHarassment &&
         position == other.position &&
+        datePosted == other.datePosted &&
         ffRef == other.ffRef;
   }
 
@@ -231,14 +246,18 @@ class _$PeoplePostsRecord extends PeoplePostsRecord {
                     $jc(
                         $jc(
                             $jc(
-                                $jc($jc($jc(0, text.hashCode), date.hashCode),
-                                    personId.hashCode),
-                                aggressive.hashCode),
-                            reflects.hashCode),
-                        approachable.hashCode),
-                    witnessedHarassing.hashCode),
-                facedHarassment.hashCode),
-            position.hashCode),
+                                $jc(
+                                    $jc(
+                                        $jc($jc(0, text.hashCode),
+                                            date.hashCode),
+                                        personId.hashCode),
+                                    aggressive.hashCode),
+                                reflects.hashCode),
+                            approachable.hashCode),
+                        witnessedHarassing.hashCode),
+                    facedHarassment.hashCode),
+                position.hashCode),
+            datePosted.hashCode),
         ffRef.hashCode));
   }
 
@@ -254,6 +273,7 @@ class _$PeoplePostsRecord extends PeoplePostsRecord {
           ..add('witnessedHarassing', witnessedHarassing)
           ..add('facedHarassment', facedHarassment)
           ..add('position', position)
+          ..add('datePosted', datePosted)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -302,6 +322,10 @@ class PeoplePostsRecordBuilder
   String? get position => _$this._position;
   set position(String? position) => _$this._position = position;
 
+  DateTime? _datePosted;
+  DateTime? get datePosted => _$this._datePosted;
+  set datePosted(DateTime? datePosted) => _$this._datePosted = datePosted;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -322,6 +346,7 @@ class PeoplePostsRecordBuilder
       _witnessedHarassing = $v.witnessedHarassing;
       _facedHarassment = $v.facedHarassment;
       _position = $v.position;
+      _datePosted = $v.datePosted;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -354,6 +379,7 @@ class PeoplePostsRecordBuilder
             witnessedHarassing: witnessedHarassing,
             facedHarassment: facedHarassment,
             position: position,
+            datePosted: datePosted,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

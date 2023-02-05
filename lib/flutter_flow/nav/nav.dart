@@ -45,11 +45,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'person_search',
-              path: 'personSearch',
-              builder: (context, params) => PersonSearchWidget(),
-            ),
-            FFRoute(
               name: 'company_search',
               path: 'companySearch',
               builder: (context, params) => CompanySearchWidget(),
@@ -102,7 +97,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'EmployeeReviews',
               path: 'employeeReviews',
-              builder: (context, params) => EmployeeReviewsWidget(),
+              asyncParams: {
+                'person': getDoc(['people'], PeopleRecord.serializer),
+              },
+              builder: (context, params) => EmployeeReviewsWidget(
+                person: params.getParam('person', ParamType.Document),
+              ),
             ),
             FFRoute(
               name: 'CompanyReviews',

@@ -1,12 +1,10 @@
 import '../backend/backend.dart';
 import '../components/company_search_card_widget.dart';
-import '../components/styled_text_field_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import 'dart:async';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
@@ -20,30 +18,20 @@ class CompanySearchWidget extends StatefulWidget {
 
 class _CompanySearchWidgetState extends State<CompanySearchWidget> {
   List<CompaniesRecord> simpleSearchResults = [];
+  TextEditingController? textController;
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  late StreamSubscription<bool> _keyboardVisibilitySubscription;
-  bool _isKeyboardVisible = false;
 
   @override
   void initState() {
     super.initState();
-    if (!isWeb) {
-      _keyboardVisibilitySubscription =
-          KeyboardVisibilityController().onChange.listen((bool visible) {
-        setState(() {
-          _isKeyboardVisible = visible;
-        });
-      });
-    }
+    textController = TextEditingController();
   }
 
   @override
   void dispose() {
     _unfocusNode.dispose();
-    if (!isWeb) {
-      _keyboardVisibilitySubscription.cancel();
-    }
+    textController?.dispose();
     super.dispose();
   }
 
@@ -72,10 +60,7 @@ class _CompanySearchWidgetState extends State<CompanySearchWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                if ((isWeb
-                        ? MediaQuery.of(context).viewInsets.bottom > 0
-                        : _isKeyboardVisible) ==
-                    false)
+                if (textController!.text == '')
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 60, 0, 0),
                     child: Text(
@@ -92,33 +77,95 @@ class _CompanySearchWidgetState extends State<CompanySearchWidget> {
                     ),
                   ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(50, 84, 50, 0),
-                  child: StyledTextFieldWidget(
-                    hintText: 'Search companies...',
-                    onChanged: () async {
-                      await queryCompaniesRecordOnce()
-                          .then(
-                            (records) => simpleSearchResults = TextSearch(
-                              records
-                                  .map(
-                                    (record) =>
-                                        TextSearchItem(record, [record.name!]),
+                  padding: EdgeInsetsDirectional.fromSTEB(30, 30, 30, 0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Color(0xFFFAFAFA), Color(0x93D7A1FF)],
+                        stops: [0, 1],
+                        begin: AlignmentDirectional(0, -1),
+                        end: AlignmentDirectional(0, 1),
+                      ),
+                      borderRadius: BorderRadius.circular(33),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                      child: TextFormField(
+                        controller: textController,
+                        onChanged: (_) => EasyDebounce.debounce(
+                          'textController',
+                          Duration(milliseconds: 0),
+                          () async {
+                            await queryCompaniesRecordOnce()
+                                .then(
+                                  (records) => simpleSearchResults = TextSearch(
+                                    records
+                                        .map(
+                                          (record) => TextSearchItem(
+                                              record, [record.name!]),
+                                        )
+                                        .toList(),
                                   )
-                                  .toList(),
-                            )
-                                .search(FFAppState().companySearch)
-                                .map((r) => r.object)
-                                .toList(),
-                          )
-                          .onError((_, __) => simpleSearchResults = [])
-                          .whenComplete(() => setState(() {}));
-                    },
+                                      .search(textController!.text)
+                                      .map((r) => r.object)
+                                      .toList(),
+                                )
+                                .onError((_, __) => simpleSearchResults = [])
+                                .whenComplete(() => setState(() {}));
+                          },
+                        ),
+                        autofocus: true,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          hintText: 'Search for companies...',
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(33),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(33),
+                          ),
+                          errorBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(33),
+                          ),
+                          focusedErrorBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(33),
+                          ),
+                          filled: true,
+                          fillColor: Color(0xFFEFDDFC),
+                          prefixIcon: Icon(
+                            Icons.search,
+                            color: Colors.white,
+                          ),
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                              fontFamily: 'Avenir',
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w300,
+                              fontStyle: FontStyle.italic,
+                              useGoogleFonts: false,
+                            ),
+                      ),
+                    ),
                   ),
                 ),
-                if ((isWeb
-                        ? MediaQuery.of(context).viewInsets.bottom > 0
-                        : _isKeyboardVisible) ==
-                    true)
+                if (textController!.text != '')
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(42, 0, 42, 0),
                     child: Container(
@@ -170,7 +217,7 @@ class _CompanySearchWidgetState extends State<CompanySearchWidget> {
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType
-                                                            .topToBottom,
+                                                            .rightToLeft,
                                                   ),
                                                 },
                                               );
@@ -202,6 +249,7 @@ class _CompanySearchWidgetState extends State<CompanySearchWidget> {
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.topToBottom,
+                                          duration: Duration(milliseconds: 400),
                                         ),
                                       },
                                     );

@@ -66,8 +66,30 @@ class _FindEmployeesWidgetState extends State<FindEmployeesWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
+                Align(
+                  alignment: AlignmentDirectional(-0.9, 0),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Color(0x00FFFFFF),
+                        shape: BoxShape.circle,
+                      ),
+                      child: InkWell(
+                        onTap: () async {
+                          context.pop();
+                        },
+                        child: Icon(
+                          Icons.arrow_back_ios,
+                          color: Color(0xFF58197E),
+                          size: 40,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 70, 0, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                   child: GradientText(
                     'Find Employees',
                     style: FlutterFlowTheme.of(context).bodyText1.override(
@@ -263,58 +285,83 @@ class _FindEmployeesWidgetState extends State<FindEmployeesWidget> {
                             child: Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 26, 0, 0),
-                              child: Container(
-                                width: 348,
-                                height: 79,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFE2B9FF),
-                                  borderRadius: BorderRadius.circular(36),
-                                ),
-                                child: Align(
-                                  alignment: AlignmentDirectional(-1, -0.35),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        22, 0, 0, 0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 14, 0, 0),
-                                          child: Text(
-                                            listViewPeopleRecord.fullName!,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1
-                                                .override(
-                                                  fontFamily: 'Avenir Reg',
-                                                  color: Color(0xFF58197E),
-                                                  fontSize: 15,
-                                                  useGoogleFonts: false,
-                                                ),
+                              child: InkWell(
+                                onTap: () async {
+                                  context.pushNamed(
+                                    'EmployeeReviews',
+                                    queryParams: {
+                                      'person': serializeParam(
+                                        listViewPeopleRecord,
+                                        ParamType.Document,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      'person': listViewPeopleRecord,
+                                      kTransitionInfoKey: TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType:
+                                            PageTransitionType.rightToLeft,
+                                        duration: Duration(milliseconds: 400),
+                                      ),
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  width: 348,
+                                  height: 79,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFE2B9FF),
+                                    borderRadius: BorderRadius.circular(36),
+                                  ),
+                                  child: Align(
+                                    alignment: AlignmentDirectional(-1, -0.35),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          22, 0, 0, 0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 14, 0, 0),
+                                            child: Text(
+                                              listViewPeopleRecord.fullName!,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'Avenir Reg',
+                                                    color: Color(0xFF58197E),
+                                                    fontSize: 15,
+                                                    useGoogleFonts: false,
+                                                  ),
+                                            ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 10, 0, 0),
-                                          child: Text(
-                                            listViewPeopleRecord.department!,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1
-                                                .override(
-                                                  fontFamily: 'Avenir Reg',
-                                                  color: Colors.white,
-                                                  fontSize: 15,
-                                                  useGoogleFonts: false,
-                                                ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 10, 0, 0),
+                                            child: Text(
+                                              listViewPeopleRecord.department!,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily:
+                                                            'Avenir Reg',
+                                                        color: Colors.white,
+                                                        fontSize: 15,
+                                                        useGoogleFonts: false,
+                                                      ),
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -341,62 +388,86 @@ class _FindEmployeesWidgetState extends State<FindEmployeesWidget> {
                             child: Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 26, 0, 0),
-                              child: Container(
-                                width: 348,
-                                height: 79,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFE2B9FF),
-                                  borderRadius: BorderRadius.circular(36),
-                                ),
-                                child: Align(
-                                  alignment: AlignmentDirectional(-1, -0.35),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        22, 0, 0, 0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 14, 0, 0),
-                                          child: Text(
-                                            peopleItem.fullName!,
-                                            textAlign: TextAlign.start,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1
-                                                .override(
-                                                  fontFamily: 'Avenir Reg',
-                                                  color: Color(0xFF58197E),
-                                                  fontSize: 15,
-                                                  useGoogleFonts: false,
-                                                ),
+                              child: InkWell(
+                                onTap: () async {
+                                  context.pushNamed(
+                                    'EmployeeReviews',
+                                    queryParams: {
+                                      'person': serializeParam(
+                                        peopleItem,
+                                        ParamType.Document,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      'person': peopleItem,
+                                      kTransitionInfoKey: TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType:
+                                            PageTransitionType.rightToLeft,
+                                        duration: Duration(milliseconds: 400),
+                                      ),
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  width: 348,
+                                  height: 79,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFE2B9FF),
+                                    borderRadius: BorderRadius.circular(36),
+                                  ),
+                                  child: Align(
+                                    alignment: AlignmentDirectional(-1, -0.35),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          22, 0, 0, 0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 14, 0, 0),
+                                            child: Text(
+                                              peopleItem.fullName!,
+                                              textAlign: TextAlign.start,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'Avenir Reg',
+                                                    color: Color(0xFF58197E),
+                                                    fontSize: 15,
+                                                    useGoogleFonts: false,
+                                                  ),
+                                            ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 10, 0, 0),
-                                          child: Text(
-                                            peopleItem.department!,
-                                            textAlign: TextAlign.start,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1
-                                                .override(
-                                                  fontFamily: 'Avenir Reg',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryBtnText,
-                                                  fontSize: 15,
-                                                  useGoogleFonts: false,
-                                                ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 10, 0, 0),
+                                            child: Text(
+                                              peopleItem.department!,
+                                              textAlign: TextAlign.start,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'Avenir Reg',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryBtnText,
+                                                    fontSize: 15,
+                                                    useGoogleFonts: false,
+                                                  ),
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),

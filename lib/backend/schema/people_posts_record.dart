@@ -29,6 +29,8 @@ abstract class PeoplePostsRecord
 
   String? get position;
 
+  DateTime? get datePosted;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -73,6 +75,7 @@ Map<String, dynamic> createPeoplePostsRecordData({
   bool? witnessedHarassing,
   bool? facedHarassment,
   String? position,
+  DateTime? datePosted,
 }) {
   final firestoreData = serializers.toFirestore(
     PeoplePostsRecord.serializer,
@@ -86,7 +89,8 @@ Map<String, dynamic> createPeoplePostsRecordData({
         ..approachable = approachable
         ..witnessedHarassing = witnessedHarassing
         ..facedHarassment = facedHarassment
-        ..position = position,
+        ..position = position
+        ..datePosted = datePosted,
     ),
   );
 
