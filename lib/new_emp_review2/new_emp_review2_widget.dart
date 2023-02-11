@@ -83,7 +83,7 @@ class _NewEmpReview2WidgetState extends State<NewEmpReview2Widget> {
                 padding: EdgeInsetsDirectional.fromSTEB(22, 44, 0, 0),
                 child: Container(
                   width: 369,
-                  height: 151,
+                  height: 143,
                   decoration: BoxDecoration(
                     color: Color(0x00FFFFFF),
                   ),

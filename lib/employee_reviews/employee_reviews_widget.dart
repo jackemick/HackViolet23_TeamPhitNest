@@ -198,7 +198,7 @@ class _EmployeeReviewsWidgetState extends State<EmployeeReviewsWidget> {
                                                   children: [
                                                     Container(
                                                       width: 320,
-                                                      height: 70,
+                                                      height: 78,
                                                       decoration: BoxDecoration(
                                                         color:
                                                             Color(0x00FFFFFF),
@@ -327,56 +327,6 @@ class _EmployeeReviewsWidgetState extends State<EmployeeReviewsWidget> {
                                                                 ),
                                                               ),
                                                             ),
-                                                            Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          13,
-                                                                          0,
-                                                                          8,
-                                                                          0),
-                                                                  child:
-                                                                      Container(
-                                                                    width: 160,
-                                                                    height: 19,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color: Color(
-                                                                          0x00FFFFFF),
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              18),
-                                                                    ),
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          AlignmentDirectional(
-                                                                              -0.53,
-                                                                              0),
-                                                                      child:
-                                                                          Text(
-                                                                        postsItem
-                                                                            .datePosted!
-                                                                            .toString(),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyText1
-                                                                            .override(
-                                                                              fontFamily: 'Avenir Reg',
-                                                                              color: Color(0xFF58197E),
-                                                                              useGoogleFonts: false,
-                                                                            ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
                                                           ],
                                                         ),
                                                       ),
@@ -391,76 +341,6 @@ class _EmployeeReviewsWidgetState extends State<EmployeeReviewsWidget> {
                                     ),
                                   );
                                 },
-                              ),
-                              Align(
-                                alignment: AlignmentDirectional(1, -1),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          160, 48, 0, 11),
-                                      child: Icon(
-                                        Icons.keyboard_arrow_down,
-                                        color: Color(0xFF58197E),
-                                        size: 24,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          50, 22, 50, 0),
-                                      child: Container(
-                                        width: 80,
-                                        height: 40,
-                                        decoration: BoxDecoration(
-                                          gradient: LinearGradient(
-                                            colors: [
-                                              Color(0xFFE9CCFF),
-                                              FlutterFlowTheme.of(context)
-                                                  .primaryBtnText
-                                            ],
-                                            stops: [0, 1],
-                                            begin: AlignmentDirectional(0, 1),
-                                            end: AlignmentDirectional(0, -1),
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(18),
-                                        ),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  4, 4, 4, 4),
-                                          child: FFButtonWidget(
-                                            onPressed: () {
-                                              print('Button pressed ...');
-                                            },
-                                            text: 'Report',
-                                            options: FFButtonOptions(
-                                              width: 224,
-                                              height: 50,
-                                              color: Color(0xFFEFDDFC),
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .subtitle2
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        color:
-                                                            Color(0xFF58197E),
-                                                        fontSize: 8,
-                                                      ),
-                                              borderSide: BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(18),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
                               ),
                             ],
                           ),

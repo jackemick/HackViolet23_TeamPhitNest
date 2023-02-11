@@ -38,44 +38,48 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: SingleChildScrollView(
         physics: NeverScrollableScrollPhysics(),
-        child: SizedBox(height: MediaQuery.of(context).size.height,  child: GestureDetector(
-        onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
-        child: Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color(0xFFE2B9FF),
-                FlutterFlowTheme.of(context).primaryBtnText
-              ],
-              stops: [0, 1],
-              begin: AlignmentDirectional(0, -1),
-              end: AlignmentDirectional(0, 1),
-            ),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Column(
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: GestureDetector(
+            onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+            child: Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0xFFE2B9FF),
+                    FlutterFlowTheme.of(context).primaryBtnText
+                  ],
+                  stops: [0, 1],
+                  begin: AlignmentDirectional(0, -1),
+                  end: AlignmentDirectional(0, 1),
+                ),
+              ),
+              child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
-                    child: Container(
-                      width: 369,
-                      height: 248,
-                      decoration: BoxDecoration(
-                        color: Color(0x00FFFFFF),
-                      ),
-                      child: Align(
-                        alignment: AlignmentDirectional(-0.9, -1),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                          child: GradientText(
-                            'No\nFear\nSpeak\n',
-                            style:
-                                FlutterFlowTheme.of(context).bodyText1.override(
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
+                        child: Container(
+                          width: 369,
+                          height: 248,
+                          decoration: BoxDecoration(
+                            color: Color(0x00FFFFFF),
+                          ),
+                          child: Align(
+                            alignment: AlignmentDirectional(-0.9, -1),
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                              child: GradientText(
+                                'No\nFear\nSpeak\n',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
                                       fontFamily: 'Avenir Reg',
                                       fontSize: 80,
                                       letterSpacing: 2,
@@ -84,109 +88,128 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       useGoogleFonts: false,
                                       lineHeight: 1,
                                     ),
-                            colors: [
-                              Color(0xFFEFDDFC),
-                              FlutterFlowTheme.of(context).primaryBtnText
-                            ],
-                            gradientDirection: GradientDirection.btt,
-                            gradientType: GradientType.linear,
+                                colors: [
+                                  Color(0xFFEFDDFC),
+                                  FlutterFlowTheme.of(context).primaryBtnText
+                                ],
+                                gradientDirection: GradientDirection.btt,
+                                gradientType: GradientType.linear,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(0, 0.4),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 100, 0, 0),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 3.4,
-                        height: 226,
-                        decoration: BoxDecoration(
-                          color: Color(0x00FFFFFF),
-                        ),
+                      Align(
+                        alignment: AlignmentDirectional(0, 0.4),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(25, 0, 25, 0),
-                          child: Text(
-                            'Empowering women to share and raise awareness of harassment, driving change towards equality.',
-                            style:
-                                FlutterFlowTheme.of(context).bodyText1.override(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 100, 0, 0),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 3.4,
+                            height: 226,
+                            decoration: BoxDecoration(
+                              color: Color(0x00FFFFFF),
+                            ),
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(25, 0, 25, 0),
+                              child: Text(
+                                'Empowering women to share and raise awareness of harassment, driving change towards equality.',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
                                       fontFamily: 'Avenir Reg',
                                       color: Color(0xFF7C7C7C),
                                       fontSize: 24,
                                       fontStyle: FontStyle.italic,
                                       useGoogleFonts: false,
                                     ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(50, 50, 50, 115),
-                    child: Container(
-                      width: 232,
-                      height: 58,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Color(0xFFE9CCFF),
-                            FlutterFlowTheme.of(context).primaryBtnText
-                          ],
-                          stops: [0, 1],
-                          begin: AlignmentDirectional(0, 1),
-                          end: AlignmentDirectional(0, -1),
-                        ),
-                        borderRadius: BorderRadius.circular(18),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                        child: SizedBox(
-                          width: 224, height: 50,
-                          child: OutlinedButton(
-                            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xFFEFDDFC)),
-                            textStyle: MaterialStateProperty.all(FlutterFlowTheme.of(context).subtitle2.override(
-                                      fontFamily: 'Avenir Reg',
-                                      color: Color(0xFF58197E),
-                                      fontSize: 15,
-                                      useGoogleFonts: false,),
-                                    ),
-                                    foregroundColor: MaterialStateProperty.all(Color(0xFF58197E),),
-                                    shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                    overlayColor: MaterialStateProperty.all(Colors.transparent),
-                                   side: MaterialStateProperty.all(BorderSide(color: Colors.transparent, width: 0)),
-                            shape: MaterialStateProperty.all(RoundedRectangleBorder(   side: BorderSide(color: Colors.transparent, width: 0), borderRadius: BorderRadius.circular(18)),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(50, 50, 50, 115),
+                        child: Container(
+                          width: 232,
+                          height: 58,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Color(0xFFE9CCFF),
+                                FlutterFlowTheme.of(context).primaryBtnText
+                              ],
+                              stops: [0, 1],
+                              begin: AlignmentDirectional(0, 1),
+                              end: AlignmentDirectional(0, -1),
                             ),
-
-                                    
-                           
-                           ),
-
-                          onPressed: () async {
-                            context.pushNamed(
-                              'company_search',
-                              extra: <String, dynamic>{
-                                kTransitionInfoKey: TransitionInfo(
-                                  hasTransition: true,
-                                  transitionType:
-                                      PageTransitionType.rightToLeft,
-                                  duration: Duration(milliseconds: 400),
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                            child: SizedBox(
+                              width: 224,
+                              height: 50,
+                              child: OutlinedButton(
+                                style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                      Color(0xFFEFDDFC)),
+                                  textStyle: MaterialStateProperty.all(
+                                    FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Avenir Reg',
+                                          color: Color(0xFF58197E),
+                                          fontSize: 15,
+                                          useGoogleFonts: false,
+                                        ),
+                                  ),
+                                  foregroundColor: MaterialStateProperty.all(
+                                    Color(0xFF58197E),
+                                  ),
+                                  shadowColor: MaterialStateProperty.all(
+                                      Colors.transparent),
+                                  overlayColor: MaterialStateProperty.all(
+                                      Colors.transparent),
+                                  side: MaterialStateProperty.all(BorderSide(
+                                      color: Colors.transparent, width: 0)),
+                                  shape: MaterialStateProperty.all(
+                                    RoundedRectangleBorder(
+                                        side: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 0),
+                                        borderRadius:
+                                            BorderRadius.circular(18)),
+                                  ),
                                 ),
-                              },
-                            );
-                          },
-                          child: Text('Get Started'),
-
+                                onPressed: () async {
+                                  context.pushNamed(
+                                    'company_search',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType:
+                                            PageTransitionType.rightToLeft,
+                                        duration: Duration(milliseconds: 400),
+                                      ),
+                                    },
+                                  );
+                                },
+                                child: Text('Get Started'),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                    ),),
+                    ],
                   ),
                 ],
               ),
-            ],
+            ),
           ),
-        ),),
-      ),),
+        ),
+      ),
     );
   }
 }

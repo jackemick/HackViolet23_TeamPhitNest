@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:no_fear_speak/index.dart';
+
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -77,7 +80,7 @@ class _NewCompanyReview2WidgetState extends State<NewCompanyReview2Widget> {
                 padding: EdgeInsetsDirectional.fromSTEB(22, 44, 0, 0),
                 child: Container(
                   width: 369,
-                  height: 151,
+                  height: 143,
                   decoration: BoxDecoration(
                     color: Color(0x00FFFFFF),
                   ),
@@ -215,7 +218,34 @@ class _NewCompanyReview2WidgetState extends State<NewCompanyReview2Widget> {
                         ),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                          child: FFButtonWidget(
+                          child: OutlinedButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Color(0xFFEFDDFC)),
+                              textStyle: MaterialStateProperty.all(
+                                FlutterFlowTheme.of(context).subtitle2.override(
+                                      fontFamily: 'Avenir Reg',
+                                      color: Color(0xFF58197E),
+                                      fontSize: 15,
+                                      useGoogleFonts: false,
+                                    ),
+                              ),
+                              foregroundColor: MaterialStateProperty.all(
+                                Color(0xFF58197E),
+                              ),
+                              shadowColor:
+                                  MaterialStateProperty.all(Colors.transparent),
+                              overlayColor:
+                                  MaterialStateProperty.all(Colors.transparent),
+                              side: MaterialStateProperty.all(BorderSide(
+                                  color: Colors.transparent, width: 0)),
+                              shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                    side: BorderSide(
+                                        color: Colors.transparent, width: 0),
+                                    borderRadius: BorderRadius.circular(18)),
+                              ),
+                            ),
                             onPressed: () async {
                               final companyPostsCreateData =
                                   createCompanyPostsRecordData(
@@ -231,26 +261,9 @@ class _NewCompanyReview2WidgetState extends State<NewCompanyReview2Widget> {
                               await CompanyPostsRecord.collection
                                   .doc()
                                   .set(companyPostsCreateData);
+                              context.pushNamed('review_suck');
                             },
-                            text: 'Sumbit Review',
-                            options: FFButtonOptions(
-                              width: 224,
-                              height: 50,
-                              color: Color(0xFFEFDDFC),
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Avenir Reg',
-                                    color: Color(0xFF58197E),
-                                    fontSize: 15,
-                                    useGoogleFonts: false,
-                                  ),
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.circular(18),
-                            ),
+                            child: Text('Submit Review'),
                           ),
                         ),
                       ),

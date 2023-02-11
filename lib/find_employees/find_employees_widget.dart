@@ -160,7 +160,7 @@ class _FindEmployeesWidgetState extends State<FindEmployeesWidget> {
                       autofocus: true,
                       obscureText: false,
                       decoration: InputDecoration(
-                        hintText: '[Some hint text...]',
+                        hintText: 'Search for employees...',
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),

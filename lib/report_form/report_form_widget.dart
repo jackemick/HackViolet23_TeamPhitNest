@@ -56,27 +56,6 @@ class _ReportFormWidgetState extends State<ReportFormWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(22, 44, 0, 0),
-                child: Container(
-                  width: 369,
-                  height: 151,
-                  decoration: BoxDecoration(
-                    color: Color(0x00FFFFFF),
-                  ),
-                  child: Text(
-                    'Report',
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'jackfont',
-                          color: FlutterFlowTheme.of(context).primaryBtnText,
-                          fontSize: 80,
-                          fontStyle: FontStyle.italic,
-                          useGoogleFonts: false,
-                          lineHeight: 0.842,
-                        ),
-                  ),
-                ),
-              ),
               Container(
                 width: 393,
                 height: 657,

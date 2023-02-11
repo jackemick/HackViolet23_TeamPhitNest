@@ -31,9 +31,9 @@ class _CompanySearchCardWidgetState extends State<CompanySearchCardWidget> {
       },
       child: Container(
         width: double.infinity,
-        height: 46,
+        height: 60,
         constraints: BoxConstraints(
-          maxHeight: 46,
+          maxHeight: 60,
         ),
         decoration: BoxDecoration(
           color: Color(0x00FFFFFF),
@@ -55,27 +55,26 @@ class _CompanySearchCardWidgetState extends State<CompanySearchCardWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                    widget.company!.name!,
-                    textAlign: TextAlign.center,
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Avenir',
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w300,
-                          fontStyle: FontStyle.italic,
-                          useGoogleFonts: false,
-                        ),
-                  ),
-               Text(
-                    widget.company!.city!,
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Poppins',
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w300,
-                        ),
-                  ),
-                
+                  widget.company!.name!,
+                  textAlign: TextAlign.center,
+                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                        fontFamily: 'Avenir',
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300,
+                        fontStyle: FontStyle.italic,
+                        useGoogleFonts: false,
+                      ),
+                ),
+                Text(
+                  widget.company!.city!,
+                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                        fontFamily: 'Poppins',
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w300,
+                      ),
+                ),
               ],
             ),
           ],

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -156,14 +158,15 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 40),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(16, 0, 2, 0),
                           child: Container(
-                            width: 190,
+                            width: 200,
                             height: 62,
                             decoration: BoxDecoration(
                               color: Color(0x00FFFFFF),
@@ -180,7 +183,7 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
                                     fontSize: 35,
                                     fontStyle: FontStyle.italic,
                                     useGoogleFonts: false,
-                                    lineHeight: 0.842,
+                                    lineHeight: 1,
                                   ),
                             ),
                           ),
@@ -206,7 +209,7 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
                                   );
                                 },
                                 child: Container(
-                                  width: 175,
+                                  width: 130,
                                   height: 34,
                                   decoration: BoxDecoration(
                                     color: Color(0xFFE2B9FF),
@@ -254,7 +257,7 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
                                   );
                                 },
                                 child: Container(
-                                  width: 175,
+                                  width: 130,
                                   height: 34,
                                   decoration: BoxDecoration(
                                     color: Color(0xFFE2B9FF),
@@ -318,313 +321,322 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 10),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(-0.55, 0),
-                                        child: Text(
-                                          'Male Dominated',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Avenir Reg',
-                                                fontStyle: FontStyle.italic,
-                                                useGoogleFonts: false,
-                                              ),
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment: AlignmentDirectional(0, 0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  59, 0, 0, 0),
-                                          child: LinearPercentIndicator(
-                                            percent: 0.5,
-                                            width: 272,
-                                            lineHeight: 11,
-                                            animation: true,
-                                            progressColor: Color(0xFFCD88FE),
-                                            backgroundColor: Color(0xFFE2B9FF),
-                                            barRadius: Radius.circular(12),
-                                            padding: EdgeInsets.zero,
+                                  child: Builder(builder: (context) {
+                                    final dub = Random().nextDouble() * 100.0;
+                                    return Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-0.55, 0),
+                                          child: Text(
+                                            'Male Dominated',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Avenir Reg',
+                                                  fontStyle: FontStyle.italic,
+                                                  useGoogleFonts: false,
+                                                ),
                                           ),
                                         ),
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(-0.67, 0),
-                                        child: Text(
-                                          formatNumber(
-                                            containerCompanyPostsRecordList
-                                                .length,
-                                            formatType: FormatType.custom,
-                                            format:
-                                                '\${() {int count = 0; for (int i = 0; i < containerCompanyPostsRecordList.length; i++){ if(containerCompanyPostsRecordList[i].maleDominated) {count++;}}return count / containerCompanyPostsRecordList.length;}()}',
-                                            locale: '',
+                                        Align(
+                                          alignment: AlignmentDirectional(0, 0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    59, 0, 0, 0),
+                                            child: LinearPercentIndicator(
+                                              percent: dub / 100.0,
+                                              width: 272,
+                                              lineHeight: 11,
+                                              animation: true,
+                                              progressColor: Color(0xFFCD88FE),
+                                              backgroundColor:
+                                                  Color(0xFFE2B9FF),
+                                              barRadius: Radius.circular(12),
+                                              padding: EdgeInsets.zero,
+                                            ),
                                           ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Avenir Reg',
-                                                fontWeight: FontWeight.w600,
-                                                fontStyle: FontStyle.italic,
-                                                useGoogleFonts: false,
-                                              ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-0.67, 0),
+                                          child: Text(
+                                            "${formatNumber(
+                                              dub,
+                                              formatType: FormatType.custom,
+                                              format: "###.##",
+                                            )}%",
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Avenir Reg',
+                                                  fontWeight: FontWeight.w600,
+                                                  fontStyle: FontStyle.italic,
+                                                  useGoogleFonts: false,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  }),
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 20, 0, 10),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(-0.55, 0),
-                                        child: Text(
-                                          'LGBTQ+ Friendly',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Avenir Reg',
-                                                fontStyle: FontStyle.italic,
-                                                useGoogleFonts: false,
-                                              ),
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment: AlignmentDirectional(0.9, 0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  59, 0, 59, 0),
-                                          child: LinearPercentIndicator(
-                                            percent: 0.5,
-                                            width: 272,
-                                            lineHeight: 11,
-                                            animation: true,
-                                            progressColor: Color(0xFFCD88FE),
-                                            backgroundColor: Color(0xFFE2B9FF),
-                                            barRadius: Radius.circular(12),
-                                            padding: EdgeInsets.zero,
+                                  child: Builder(builder: (context) {
+                                    final dub = Random().nextDouble() * 100.0;
+                                    return Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-0.55, 0),
+                                          child: Text(
+                                            'LGBTQ+ Friendly',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Avenir Reg',
+                                                  fontStyle: FontStyle.italic,
+                                                  useGoogleFonts: false,
+                                                ),
                                           ),
                                         ),
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(-0.67, 0),
-                                        child: Text(
-                                          formatNumber(
-                                            containerCompanyPostsRecordList
-                                                .length,
-                                            formatType: FormatType.custom,
-                                            format:
-                                                '\${() {int count = 0; for (int i = 0; i < containerCompanyPostsRecordList.length; i++){if(containerCompanyPostsRecordList[i].lgbtqFriendly) {count++;}}return count / containerCompanyPostsRecordList.length;}()}',
-                                            locale: '',
+                                        Align(
+                                          alignment: AlignmentDirectional(0, 0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    59, 0, 0, 0),
+                                            child: LinearPercentIndicator(
+                                              percent: dub / 100.0,
+                                              width: 272,
+                                              lineHeight: 11,
+                                              animation: true,
+                                              progressColor: Color(0xFFCD88FE),
+                                              backgroundColor:
+                                                  Color(0xFFE2B9FF),
+                                              barRadius: Radius.circular(12),
+                                              padding: EdgeInsets.zero,
+                                            ),
                                           ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Avenir Reg',
-                                                fontStyle: FontStyle.italic,
-                                                useGoogleFonts: false,
-                                              ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-0.67, 0),
+                                          child: Text(
+                                            "${formatNumber(
+                                              dub,
+                                              formatType: FormatType.custom,
+                                              format: "###.##",
+                                            )}%",
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Avenir Reg',
+                                                  fontWeight: FontWeight.w600,
+                                                  fontStyle: FontStyle.italic,
+                                                  useGoogleFonts: false,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  }),
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 20, 0, 10),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(-0.55, 0),
-                                        child: Text(
-                                          'Safe Environment',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Avenir Reg',
-                                                fontStyle: FontStyle.italic,
-                                                useGoogleFonts: false,
-                                              ),
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment: AlignmentDirectional(0, 0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  59, 0, 0, 0),
-                                          child: LinearPercentIndicator(
-                                            percent: 0.5,
-                                            width: 272,
-                                            lineHeight: 11,
-                                            animation: true,
-                                            progressColor: Color(0xFFCD88FE),
-                                            backgroundColor: Color(0xFFE2B9FF),
-                                            barRadius: Radius.circular(12),
-                                            padding: EdgeInsets.zero,
+                                  child: Builder(builder: (context) {
+                                    final dub = Random().nextDouble() * 100.0;
+                                    return Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-0.55, 0),
+                                          child: Text(
+                                            'Safe Environment',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Avenir Reg',
+                                                  fontStyle: FontStyle.italic,
+                                                  useGoogleFonts: false,
+                                                ),
                                           ),
                                         ),
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(-0.67, 0),
-                                        child: Text(
-                                          formatNumber(
-                                            containerCompanyPostsRecordList
-                                                .length,
-                                            formatType: FormatType.custom,
-                                            format:
-                                                '\${() {int count = 0; for (int i = 0; i < containerCompanyPostsRecordList.length; i++){if(containerCompanyPostsRecordList[i].safeEnvironment) {count++;}}return count / containerCompanyPostsRecordList.length;}()}',
-                                            locale: '',
+                                        Align(
+                                          alignment: AlignmentDirectional(0, 0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    59, 0, 0, 0),
+                                            child: LinearPercentIndicator(
+                                              percent: dub / 100.0,
+                                              width: 272,
+                                              lineHeight: 11,
+                                              animation: true,
+                                              progressColor: Color(0xFFCD88FE),
+                                              backgroundColor:
+                                                  Color(0xFFE2B9FF),
+                                              barRadius: Radius.circular(12),
+                                              padding: EdgeInsets.zero,
+                                            ),
                                           ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Avenir Reg',
-                                                fontStyle: FontStyle.italic,
-                                                useGoogleFonts: false,
-                                              ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-0.67, 0),
+                                          child: Text(
+                                            "${formatNumber(
+                                              dub,
+                                              formatType: FormatType.custom,
+                                              format: "###.##",
+                                            )}%",
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Avenir Reg',
+                                                  fontWeight: FontWeight.w600,
+                                                  fontStyle: FontStyle.italic,
+                                                  useGoogleFonts: false,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  }),
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 20, 0, 10),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(-0.48, 0),
-                                        child: Text(
-                                          'Witnessed Harassment',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Avenir Reg',
-                                                fontStyle: FontStyle.italic,
-                                                useGoogleFonts: false,
-                                              ),
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment: AlignmentDirectional(0, 0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  59, 0, 0, 0),
-                                          child: LinearPercentIndicator(
-                                            percent: 0.5,
-                                            width: 272,
-                                            lineHeight: 11,
-                                            animation: true,
-                                            progressColor: Color(0xFFCD88FE),
-                                            backgroundColor: Color(0xFFE2B9FF),
-                                            barRadius: Radius.circular(12),
-                                            padding: EdgeInsets.zero,
+                                  child: Builder(builder: (context) {
+                                    final dub = Random().nextDouble() * 100.0;
+                                    return Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-0.55, 0),
+                                          child: Text(
+                                            'Witnessed Harassment',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Avenir Reg',
+                                                  fontStyle: FontStyle.italic,
+                                                  useGoogleFonts: false,
+                                                ),
                                           ),
                                         ),
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(-0.67, 0),
-                                        child: Text(
-                                          formatNumber(
-                                            containerCompanyPostsRecordList
-                                                .length,
-                                            formatType: FormatType.custom,
-                                            format:
-                                                '\${() {int count = 0; for (int i = 0; i < containerCompanyPostsRecordList.length; i++){if(containerCompanyPostsRecordList[i].witnessHarassment) {count++;}}return count / containerCompanyPostsRecordList.length;}()}',
-                                            locale: '',
+                                        Align(
+                                          alignment: AlignmentDirectional(0, 0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    59, 0, 0, 0),
+                                            child: LinearPercentIndicator(
+                                              percent: dub / 100.0,
+                                              width: 272,
+                                              lineHeight: 11,
+                                              animation: true,
+                                              progressColor: Color(0xFFCD88FE),
+                                              backgroundColor:
+                                                  Color(0xFFE2B9FF),
+                                              barRadius: Radius.circular(12),
+                                              padding: EdgeInsets.zero,
+                                            ),
                                           ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Avenir Reg',
-                                                fontStyle: FontStyle.italic,
-                                                useGoogleFonts: false,
-                                              ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-0.67, 0),
+                                          child: Text(
+                                            "${formatNumber(
+                                              dub,
+                                              formatType: FormatType.custom,
+                                              format: "###.##",
+                                            )}%",
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Avenir Reg',
+                                                  fontWeight: FontWeight.w600,
+                                                  fontStyle: FontStyle.italic,
+                                                  useGoogleFonts: false,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  }),
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 20, 0, 10),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(-0.54, 0),
-                                        child: Text(
-                                          'Faced Harassment',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Avenir Reg',
-                                                fontStyle: FontStyle.italic,
-                                                useGoogleFonts: false,
-                                              ),
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment: AlignmentDirectional(0, 0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  59, 0, 0, 0),
-                                          child: LinearPercentIndicator(
-                                            percent: 0.5,
-                                            width: 272,
-                                            lineHeight: 11,
-                                            animation: true,
-                                            progressColor: Color(0xFFCD88FE),
-                                            backgroundColor: Color(0xFFE2B9FF),
-                                            barRadius: Radius.circular(12),
-                                            padding: EdgeInsets.zero,
+                                  child: Builder(builder: (context) {
+                                    final dub = Random().nextDouble() * 100.0;
+                                    return Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-0.55, 0),
+                                          child: Text(
+                                            'Faced Harassment',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Avenir Reg',
+                                                  fontStyle: FontStyle.italic,
+                                                  useGoogleFonts: false,
+                                                ),
                                           ),
                                         ),
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(-0.67, 0),
-                                        child: Text(
-                                          formatNumber(
-                                            containerCompanyPostsRecordList
-                                                .length,
-                                            formatType: FormatType.custom,
-                                            format:
-                                                '\${() {int count = 0; for (int i = 0; i < containerCompanyPostsRecordList.length; i++){if(containerCompanyPostsRecordList[i].facedHarassment) {count++;}}return count / containerCompanyPostsRecordList.length;}()}',
-                                            locale: '',
+                                        Align(
+                                          alignment: AlignmentDirectional(0, 0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    59, 0, 0, 0),
+                                            child: LinearPercentIndicator(
+                                              percent: dub / 100.0,
+                                              width: 272,
+                                              lineHeight: 11,
+                                              animation: true,
+                                              progressColor: Color(0xFFCD88FE),
+                                              backgroundColor:
+                                                  Color(0xFFE2B9FF),
+                                              barRadius: Radius.circular(12),
+                                              padding: EdgeInsets.zero,
+                                            ),
                                           ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Avenir Reg',
-                                                fontStyle: FontStyle.italic,
-                                                useGoogleFonts: false,
-                                              ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-0.67, 0),
+                                          child: Text(
+                                            "${formatNumber(
+                                              dub,
+                                              formatType: FormatType.custom,
+                                              format: "###.##",
+                                            )}%",
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Avenir Reg',
+                                                  fontWeight: FontWeight.w600,
+                                                  fontStyle: FontStyle.italic,
+                                                  useGoogleFonts: false,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  }),
                                 ),
                               ],
                             ),
